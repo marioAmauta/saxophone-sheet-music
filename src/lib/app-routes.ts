@@ -23,5 +23,5 @@ export class AppRoutes {
 
   static readonly accountRequiredPage = "/account-required";
 
-  static readonly projectOnGithub = "https://github.com/marioAmauta/the-sax-corner";
+  static readonly projectOnGithub = "https://github.com/marioAmauta/saxophone-sheet-music";
 }
