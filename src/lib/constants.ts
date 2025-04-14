@@ -4,6 +4,8 @@ export const authCookieName = "auth_session";
 
 export const RECENT_SEARCHES_KEY = "recentSearches";
 
+export const AFTER_LOGIN_REDIRECT_KEY = "afterLoginRedirect";
+
 export const DATA_CY_ELEMENTS = Object.freeze({
   navbar: {
     mobileMenu: "mobile-menu",

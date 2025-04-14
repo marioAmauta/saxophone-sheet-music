@@ -4,12 +4,14 @@ import { User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { startTransition, useState } from "react";
 
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
 import { AppRoutes } from "@/lib/app-routes";
 import { authClient } from "@/lib/auth-client";
 import { NavbarProps } from "@/lib/types";
 import { eventPreventDefault } from "@/lib/utils";
+
+import { useAfterLoginRedirect } from "@/hooks/use-after-login-redirect";
 
 import { LogoutButton } from "@/components/logout-button";
 import { buttonVariants } from "@/components/ui/button";
@@ -29,10 +31,22 @@ export function UserOptionsDropdown({ user }: UserOptionsDropdownProps) {
 
   const router = useRouter();
 
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const { setRedirectLink, removeRedirectLink } = useAfterLoginRedirect();
+
+  function onLoginClick() {
+    if (pathname !== AppRoutes.accountRequiredPage) {
+      setRedirectLink(pathname);
+    }
+  }
 
   async function handleSignOut() {
     setIsOpen(false);
+
+    removeRedirectLink();
 
     startTransition(async () => {
       await authClient.signOut({
@@ -61,7 +75,7 @@ export function UserOptionsDropdown({ user }: UserOptionsDropdownProps) {
           </>
         ) : (
           <DropdownMenuItem asChild>
-            <Link href={AppRoutes.loginPage} className="cursor-pointer">
+            <Link href={AppRoutes.loginPage} onClick={onLoginClick} className="cursor-pointer">
               {t("loginLabel")}
             </Link>
           </DropdownMenuItem>

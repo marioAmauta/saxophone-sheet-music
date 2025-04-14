@@ -6,8 +6,12 @@ import { ChangeEvent, startTransition, useId } from "react";
 
 import { likeSong, unlikeSong } from "@/app/songs/actions";
 
+import { usePathname } from "@/i18n/navigation";
+
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 
+import { useAfterLoginRedirect } from "@/hooks/use-after-login-redirect";
 import { useLikeContext } from "@/hooks/use-like-context";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -24,11 +28,21 @@ export function LikeSongButton({ songId, className }: LikeSongButtonProps) {
 
   const { isLiked, setIsLiked } = useLikeContext();
 
+  const { setRedirectLink } = useAfterLoginRedirect();
+
+  const session = authClient.useSession();
+
+  const pathname = usePathname();
+
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     startTransition(async () => {
       const isChecked = event.target.checked;
 
-      setIsLiked(isChecked);
+      if (session.data) {
+        setIsLiked(isChecked);
+      } else {
+        setRedirectLink(pathname);
+      }
 
       if (isChecked) {
         await likeSong({ songId });

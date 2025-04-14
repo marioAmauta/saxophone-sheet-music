@@ -16,7 +16,9 @@ export const auth = betterAuth({
   },
   advanced: {
     cookiePrefix: authCookieName,
-    generateId: () => new ObjectId().toString()
+    database: {
+      generateId: () => new ObjectId().toString()
+    }
   },
   database: prismaAdapter(prisma, {
     provider: "mongodb"

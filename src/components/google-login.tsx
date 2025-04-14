@@ -1,16 +1,18 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
-import { AppRoutes } from "@/lib/app-routes";
 import { authClient } from "@/lib/auth-client";
+
+import { useAfterLoginRedirect } from "@/hooks/use-after-login-redirect";
 
 import { GoogleIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 
 export function GoogleLogin() {
   const t = useTranslations("GoogleLogin");
-  const locale = useLocale();
+
+  const { redirectLink } = useAfterLoginRedirect();
 
   return (
     <Button
@@ -20,7 +22,7 @@ export function GoogleLogin() {
       onClick={async () => {
         await authClient.signIn.social({
           provider: "google",
-          callbackURL: `/${locale}${AppRoutes.homePage}`
+          callbackURL: redirectLink
         });
       }}
     >

@@ -6,10 +6,14 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { loginAction } from "@/app/(auth)/actions";
+import { useRouter } from "@/i18n/navigation";
 
+import { AppRoutes } from "@/lib/app-routes";
+import { authClient } from "@/lib/auth-client";
 import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { loginSchema, LoginSchemaType } from "@/lib/zod-schemas";
+
+import { useAfterLoginRedirect } from "@/hooks/use-after-login-redirect";
 
 import { GoogleLogin } from "@/components/google-login";
 import { LoadingButton } from "@/components/loading-button";
@@ -21,6 +25,8 @@ import { Separator } from "@/components/ui/separator";
 export function LoginForm() {
   const t = useTranslations("LoginForm");
 
+  const router = useRouter();
+
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<LoginSchemaType>({
@@ -31,13 +37,37 @@ export function LoginForm() {
     }
   });
 
+  const { redirectLink, removeRedirectLink } = useAfterLoginRedirect();
+
   async function onSubmit(data: LoginSchemaType) {
     startTransition(async () => {
-      const response = await loginAction(data);
+      const parsedLoginData = loginSchema(t).safeParse(data);
 
-      if (response && !response.success) {
-        toast.error(response.errorMessage, { duration: 5000 });
+      if (!parsedLoginData.success) {
+        toast.error(t("invalidCredentials"));
+
+        return;
       }
+
+      const { email, password } = parsedLoginData.data;
+
+      await authClient.signIn.email(
+        {
+          email,
+          password
+        },
+        {
+          onSuccess: () => {
+            router.replace(redirectLink || AppRoutes.homePage);
+            router.refresh();
+          },
+          onError: () => {
+            toast.error(t("invalidCredentials"));
+          }
+        }
+      );
+
+      removeRedirectLink();
     });
   }
 

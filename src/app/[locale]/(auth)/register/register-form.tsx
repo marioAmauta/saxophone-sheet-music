@@ -6,10 +6,14 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { registerAction } from "@/app/(auth)/actions";
+import { useRouter } from "@/i18n/navigation";
 
+import { AppRoutes } from "@/lib/app-routes";
+import { authClient } from "@/lib/auth-client";
 import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { registerSchema, RegisterSchemaType } from "@/lib/zod-schemas";
+
+import { useAfterLoginRedirect } from "@/hooks/use-after-login-redirect";
 
 import { LoadingButton } from "@/components/loading-button";
 import { PasswordInput } from "@/components/password-input";
@@ -18,6 +22,8 @@ import { Input } from "@/components/ui/input";
 
 export function RegisterForm() {
   const t = useTranslations("RegisterForm");
+
+  const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
 
@@ -31,13 +37,49 @@ export function RegisterForm() {
     }
   });
 
+  const { redirectLink, removeRedirectLink } = useAfterLoginRedirect();
+
   async function onSubmit(data: RegisterSchemaType) {
     startTransition(async () => {
-      const response = await registerAction(data);
+      const parsedRegisterData = registerSchema(t).safeParse(data);
 
-      if (response && !response.success) {
-        toast.error(response.errorMessage, { duration: 5000 });
+      if (!parsedRegisterData.success) {
+        toast.error(t("invalidCredentials"));
+
+        return;
       }
+
+      const { name, email, password } = parsedRegisterData.data;
+
+      await authClient.signUp.email(
+        {
+          name,
+          email,
+          password
+        },
+        {
+          onSuccess: () => {
+            router.replace(redirectLink || AppRoutes.homePage);
+            router.refresh();
+          },
+          onError: ({ error }) => {
+            switch (error.code as keyof typeof authClient.$ERROR_CODES) {
+              case "USER_ALREADY_EXISTS": {
+                toast.error(t("email.alreadyUsedEmail"));
+
+                return;
+              }
+              case "PASSWORD_TOO_SHORT": {
+                toast.error(t("passwordTooShort"));
+
+                return;
+              }
+            }
+          }
+        }
+      );
+
+      removeRedirectLink();
     });
   }
 

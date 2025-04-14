@@ -12,7 +12,11 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (session) {
-    if (pathname.includes(AppRoutes.loginPage) || pathname.includes(AppRoutes.registerPage)) {
+    if (
+      pathname.includes(AppRoutes.loginPage) ||
+      pathname.includes(AppRoutes.registerPage) ||
+      pathname.includes(AppRoutes.accountRequiredPage)
+    ) {
       return NextResponse.redirect(new URL(AppRoutes.homePage, request.url));
     }
   }
