@@ -1,0 +1,376 @@
+{
+  "metadata": {
+    "title": "Sax Sheet",
+    "description": "Un lugar donde puedes encontrar partituras para saxofón"
+  },
+  "NotFoundPage": {
+    "title": "Página no encontrada",
+    "description": "Lo siento, la página que estás buscando no existe",
+    "buttonLabel": "Volver a la página de Inicio"
+  },
+  "HomePage": {
+    "heroSection": {
+      "title": "Partituras para Saxofón",
+      "description": "Accede, descarga y contribuye a nuestra creciente colección de partituras para saxofón.",
+      "buttonLabel": "Explorar Biblioteca"
+    },
+    "featuresSection": {
+      "title": "Todo lo que Necesitas",
+      "description": "Nuestra plataforma ofrece todas las herramientas y recursos para saxofonistas de todos los niveles.",
+      "features": {
+        "search": {
+          "title": "Buscar",
+          "description": "Encuentra fácilmente la partitura que necesitas."
+        },
+        "favorites": {
+          "title": "Favoritos",
+          "description": "Guarda tus partituras favoritas para un acceso rápido."
+        },
+        "contribute": {
+          "title": "Contribuir",
+          "description": "Comparte tus propias partituras con la comunidad."
+        },
+        "multipleGenres": {
+          "title": "Múltiples Géneros",
+          "description": "Desde jazz hasta pop, encuentra partituras de diversos géneros musicales."
+        },
+        "freeDownloads": {
+          "title": "Descargas Gratuitas",
+          "description": "Descarga gratis cualquier partitura en PDF y pista de audio en MP3."
+        }
+      }
+    },
+    "openSourceSection": {
+      "title": "Proyecto Impulsado por la Comunidad",
+      "description": "Sax Sheet es un proyecto de código abierto, lo que significa que cualquiera puede contribuir, mejorar y ayudar a hacer crecer nuestra colección.",
+      "p1": "Totalmente de código abierto en GitHub",
+      "p2": "Comunidad de colaboradores en crecimiento",
+      "buttonLabel": "Ver en GitHub"
+    },
+    "ctaSection": {
+      "title": "Empieza a Tocar Hoy",
+      "description": "Únete a miles de saxofonistas que usan nuestra biblioteca gratuita de partituras.",
+      "buttonLabel": "Explorar Biblioteca"
+    }
+  },
+  "LoginLink": {
+    "label": "Iniciar sesión"
+  },
+  "RegisterPage": {
+    "title": "Crear cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "loginLink": "Iniciar sesión"
+  },
+  "RegisterForm": {
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Ingresa tu nombre",
+      "errorMessage": "El nombre debe tener al menos 1 carácter"
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Ingresa tu correo electrónico",
+      "errorMessage": "Ingresa un correo electrónico válido",
+      "alreadyUsedEmail": "El correo electrónico ya está en uso, por favor elige otro."
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Ingresa tu contraseña",
+      "errorMessage": "La contraseña debe tener al menos 4 caracteres"
+    },
+    "confirmPassword": {
+      "label": "Confirmar Contraseña",
+      "placeholder": "Confirma tu contraseña",
+      "errorMessage": "La contraseña debe tener al menos 4 caracteres",
+      "errorMatchMessage": "Las contraseñas no coinciden"
+    },
+    "invalidCredentials": "Correo electrónico y/o contraseña inválidos.",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+    "shouldChooseAnotherEmail": "El correo electrónico ya está en uso, por favor elige otro.",
+    "registerSubmit": "Crear cuenta"
+  },
+  "LoginPage": {
+    "title": "Iniciar sesión",
+    "noAccount": "¿No tienes una cuenta?",
+    "registerLink": "Crear una cuenta"
+  },
+  "LoginForm": {
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Ingresa tu correo electrónico",
+      "errorMessage": "Ingresa un correo electrónico válido",
+      "alreadyUsedEmail": "El correo electrónico ya está en uso, por favor elige otro."
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Ingresa tu contraseña",
+      "errorMessage": "La contraseña debe tener al menos 4 caracteres"
+    },
+    "invalidCredentials": "Correo electrónico y/o contraseña inválidos.",
+    "loginSubmit": "Iniciar sesión"
+  },
+  "GoogleLogin": {
+    "label": "Iniciar sesión con Google"
+  },
+  "AccountRequiredPage": {
+    "title": "Cuenta Requerida",
+    "description": "Necesitas una cuenta para guardar canciones en tu lista de favoritos.",
+    "buttonLabel": "Iniciar sesión"
+  },
+  "SearchPage": {
+    "title": "Buscar"
+  },
+  "SearchForm": {
+    "placeholder": "Busca una canción o artista",
+    "submitLabel": "Buscar",
+    "errorMessage": "Solo se permiten letras"
+  },
+  "SearchResults": {
+    "messageText": "Busca por canción o artista",
+    "withResult": "Resultados para:",
+    "withoutResult": "No se encontraron resultados para:"
+  },
+  "RecentSearches": {
+    "title": "Búsquedas Recientes",
+    "noSearches": "No tienes búsquedas recientes",
+    "clearButton": "Limpiar Búsquedas",
+    "clearQuestion": "¿Estás seguro de que quieres limpiar todas las búsquedas?",
+    "clearDescription": "Esta acción no se puede deshacer.",
+    "clearCancel": "Cancelar",
+    "clearConfirm": "Limpiar"
+  },
+  "FavoriteSongsPage": {
+    "title": "Canciones Favoritas",
+    "noSongs": "No tienes canciones favoritas",
+    "quantityLabel": "canciones favoritas"
+  },
+  "SongsPage": {
+    "title": "Canciones",
+    "noSongs": "No se encontraron canciones",
+    "quantityLabel": "canciones"
+  },
+  "SongDetailPage": {
+    "resourcesTitle": "Contenido",
+    "musicSheets": {
+      "sopranoSax": "Descargar Partitura Saxo Soprano",
+      "altoSax": "Descargar Partitura Saxo Alto",
+      "tenorSax": "Descargar Partitura Saxo Tenor"
+    },
+    "audioTrack": "Descargar Pista de Audio",
+    "biographyLink": "Biografía",
+    "youTubeLink": "Partitura en YouTube",
+    "originalSong": "Canción Original",
+    "editSongButton": "Editar"
+  },
+  "LikeSongButton": {
+    "likeLabel": "Me gusta",
+    "unlikeLabel": "No me gusta"
+  },
+  "DeleteSongButton": {
+    "dialogTitle": "¿Quieres eliminar esta canción?",
+    "dialogDescription": "Selecciona una opción",
+    "dialogCancel": "Cancelar",
+    "dialogAction": "Eliminar"
+  },
+  "ArtistsPage": {
+    "title": "Artistas",
+    "noArtists": "No se encontraron artistas",
+    "quantityLabel": "artistas"
+  },
+  "ArtistDetailPage": {
+    "biography": "Biografía",
+    "songs": "Canciones",
+    "noSongs": "No se encontraron canciones",
+    "editArtistButton": "Editar",
+    "quantityLabel": "canciones"
+  },
+  "DeleteArtistButton": {
+    "dialogTitle": "¿Quieres eliminar este artista?",
+    "dialogDescription": "Selecciona una opción",
+    "dialogCancel": "Cancelar",
+    "dialogAction": "Eliminar"
+  },
+  "SongCard": {
+    "biography": "Biografía del Artista",
+    "originalSong": "Canción Original",
+    "youTubeLink": "Link de YouTube",
+    "downloadMP3": "Descargar MP3",
+    "instruments": {
+      "sopranoSax": "Saxo Soprano",
+      "altoSax": "Saxo Alto",
+      "tenorSax": "Saxo Tenor"
+    }
+  },
+  "InvitationForm": {
+    "label": "Crear Código de Invitación",
+    "placeholder": "Ingresa tu código de invitación",
+    "submitLabel": "Crear Código"
+  },
+  "InvitationCodesPage": {
+    "title": "Códigos de Invitación",
+    "noInvitationCodes": "No tienes códigos de invitación"
+  },
+  "CreateSongPage": {
+    "title": "Crear Canción"
+  },
+  "EditArtistPage": {
+    "title": "Editar Artista"
+  },
+  "EditArtistForm": {
+    "artistName": {
+      "label": "Nombre del Artista",
+      "placeholder": "Ingresa el nombre del artista",
+      "selectLabel": "Artistas encontrados",
+      "selectDefaultValueLabel": "Selecciona un artista",
+      "errorMessage": "Debes ingresar el nombre del artista"
+    },
+    "biographyLink": {
+      "label": "Link de la Biografía (opcional)",
+      "placeholder": "Ingresa el link de la biografía"
+    },
+    "musicalGenre": {
+      "label": "Géneros Musicales",
+      "selectLabel": "Elige Género Musical",
+      "errorMessage": "Debes seleccionar al menos un género musical"
+    },
+    "cancelButton": "Cancelar",
+    "submitButton": "Editar Artista"
+  },
+  "EditSongPage": {
+    "title": "Editar Canción"
+  },
+  "EditSongForm": {
+    "title": {
+      "label": "Título",
+      "placeholder": "Ingresa el título de la canción",
+      "errorMessage": "Debes ingresar el título de la canción"
+    },
+    "youTubeLink": {
+      "label": "Link Partitura en YouTube",
+      "placeholder": "Ingresa el link de YouTube",
+      "errorMessage": "Debes ingresar el link de YouTube"
+    },
+    "originalSongLink": {
+      "label": "Link Canción Original",
+      "placeholder": "Ingresa el link de la canción",
+      "errorMessage": "Debes ingresar el link de la canción original"
+    },
+    "audioFileLink": {
+      "label": "Link del Archivo de Audio",
+      "placeholder": "Ingresa el link del archivo",
+      "errorMessage": "Debes ingresar el link del archivo de audio"
+    },
+    "instrumentsSection": {
+      "legend": "Instrumentos",
+      "instruments": {
+        "sopranoSax": {
+          "checkboxLabel": "Saxo Soprano",
+          "sheetLabel": "Partitura Saxo Soprano",
+          "sheetPlaceholder": "Ingresa el link de la partitura"
+        },
+        "altoSax": {
+          "checkboxLabel": "Saxo Alto",
+          "sheetLabel": "Partitura Saxo Alto",
+          "sheetPlaceholder": "Ingresa el link de la partitura"
+        },
+        "tenorSax": {
+          "checkboxLabel": "Saxo Tenor",
+          "sheetLabel": "Partitura Saxo Tenor",
+          "sheetPlaceholder": "Ingresa el link de la partitura"
+        },
+        "errorMessage": "Debes seleccionar al menos un instrumento"
+      }
+    },
+    "cancelButton": "Cancelar",
+    "submitButton": "Editar Canción"
+  },
+  "DeleteSheetButton": {
+    "dialogTitle": "¿Quieres eliminar esta partitura?",
+    "dialogDescription": "Selecciona una opción",
+    "dialogCancel": "Cancelar",
+    "dialogAction": "Eliminar Partitura"
+  },
+  "CreateSongForm": {
+    "cancelButton": "Cancelar",
+    "submitButton": "Crear Canción"
+  },
+  "MusicalGenresPage": {
+    "title": "Géneros Musicales",
+    "noMusicalGenres": "No se encontraron géneros musicales"
+  },
+  "MusicalGenreDetailPage": {
+    "noArtistFound": "No se encontraron artistas con este género musical",
+    "quantityLabel": "artistas"
+  },
+  "MobileNavbar": {
+    "menuLabel": "Menú",
+    "menuDescription": "Elige una opción",
+    "closeLabel": "Cerrar Menú"
+  },
+  "navbar": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "artists": "Artistas",
+    "songs": "Canciones",
+    "favoriteSongs": "Canciones Favoritas",
+    "musicalGenres": "Géneros Musicales",
+    "createSong": "Crear Canción"
+  },
+  "footer": {
+    "homeLink": "Inicio",
+    "searchLink": "Buscar"
+  },
+  "LogOutButton": {
+    "logOutLabel": "Cerrar sesión",
+    "dialogTitle": "¿Quieres cerrar sesión?",
+    "dialogDescription": "Selecciona una opción",
+    "dialogCancel": "Cancelar"
+  },
+  "ThemeSwitcher": {
+    "label": "Tema",
+    "lightLabel": "Claro",
+    "darkLabel": "Oscuro",
+    "systemLabel": "Sistema"
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma"
+  },
+  "serverSuccessMessages": {
+    "createSongSuccess": "Canción creada exitosamente",
+    "songDeleted": "Canción eliminada exitosamente",
+    "sheetDeleted": "Partitura eliminada exitosamente"
+  },
+  "serverErrorMessages": {
+    "somethingWentWrong": "Algo salió mal.",
+    "invalidData": "Datos inválidos.",
+    "createSongError": "Error creando canción.",
+    "editArtistError": "Error editando artista.",
+    "editSongError": "Error editando canción.",
+    "uniqueAudioFileError": "El archivo de audio ya está en uso.",
+    "uniqueSheetError": "La partitura ya está en uso.",
+    "songAlreadyExists": "Este artista ya tiene esta canción creada.",
+    "sheetLinkMissing": "La partitura es requerida cuando el checkbox está marcado."
+  },
+  "sorting": {
+    "latest": "Más reciente",
+    "oldest": "Más antiguo",
+    "az": "A-Z",
+    "za": "Z-A",
+    "ofLabel": "de"
+  },
+  "pagination": {
+    "pageNumber": "Página {pageNumber}",
+    "previousLabel": "Anterior",
+    "nextLabel": "Siguiente"
+  },
+  "OrSeparator": {
+    "label": "o"
+  },
+  "UserOptionsDropdown": {
+    "myAccountLabel": "Mi Cuenta",
+    "loginLabel": "Iniciar sesión"
+  },
+  "GoBackButton": {
+    "label": "Volver atrás"
+  }
+}

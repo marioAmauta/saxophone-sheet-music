@@ -1,0 +1,169 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String     @unique
+  emailVerified Boolean    @default(false)
+  image         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  role          String     @default("user")
+  sessions      Session[]
+  likedSongs    SongLike[]
+  playlists     Playlist[]
+  accounts      Account[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @db.ObjectId
+  token     String
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(auto()) @map("_id") @db.ObjectId
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                String    @db.ObjectId
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  idToken               String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("accounts")
+}
+
+model Verification {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verifications")
+}
+
+model Artist {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  slug          String       @unique
+  artistName    String       @unique
+  biographyLink String?
+  musicalGenre  String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  songs         Song[]
+  artistSongs   ArtistSong[]
+
+  @@map("artists")
+}
+
+model ArtistSong {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  artistId String @db.ObjectId
+  song     Song   @relation(fields: [songId], references: [id], onDelete: Cascade)
+  songId   String @db.ObjectId
+
+  @@map("artistSongs")
+}
+
+model Song {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  artist           Artist         @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  artistId         String         @db.ObjectId
+  slug             String         @unique
+  title            String
+  youTubeLink      String
+  originalSongLink String
+  audioFiles       AudioFile[]
+  sheets           SheetFile[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  likedBy          SongLike[]
+  artistSongs      ArtistSong[]
+  playlistSong     PlaylistSong[]
+
+  @@map("songs")
+}
+
+model AudioFile {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fileName  String
+  key       String
+  url       String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  song      Song?    @relation(fields: [songId], references: [id], onDelete: SetNull)
+  songId    String?  @db.ObjectId
+
+  @@map("audioFiles")
+}
+
+model SheetFile {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  instrumentKey String
+  key           String
+  url           String   @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  song          Song?    @relation(fields: [songId], references: [id], onDelete: SetNull)
+  songId        String?  @db.ObjectId
+
+  @@map("sheets")
+}
+
+model Playlist {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String         @db.ObjectId
+  name         String
+  playlistSong PlaylistSong[]
+
+  @@map("playlists")
+}
+
+model PlaylistSong {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  playlist   Playlist @relation(fields: [playlistId], references: [id], onDelete: Cascade)
+  playlistId String   @db.ObjectId
+  song       Song     @relation(fields: [songId], references: [id], onDelete: Cascade)
+  songId     String   @db.ObjectId
+
+  @@map("playlistSongs")
+}
+
+model SongLike {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String   @db.ObjectId
+  song     Song     @relation(fields: [songId], references: [id], onDelete: Cascade)
+  songId   String   @db.ObjectId
+  likeDate DateTime @default(now())
+
+  @@map("songLikes")
+}
