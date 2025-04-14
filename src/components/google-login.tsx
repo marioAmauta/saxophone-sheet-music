@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 export function GoogleLogin() {
   const t = useTranslations("GoogleLogin");
 
-  const { redirectLink } = useAfterLoginRedirect();
+  const { redirectLink, removeRedirectLink } = useAfterLoginRedirect();
 
   return (
     <Button
@@ -24,6 +24,8 @@ export function GoogleLogin() {
           provider: "google",
           callbackURL: redirectLink
         });
+
+        removeRedirectLink();
       }}
     >
       <GoogleIcon className="size-4 fill-current" />
