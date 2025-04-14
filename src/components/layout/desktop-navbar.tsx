@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
 import { Link, usePathname } from "@/i18n/navigation";
 
@@ -15,8 +16,6 @@ type DesktopNavbarProps = { isAdmin: NavbarProps["isAdmin"] };
 
 export function DesktopNavbar({ isAdmin }: DesktopNavbarProps) {
   const t = useTranslations("navbar");
-
-  const pathname = usePathname();
 
   const links: LinkType[] = [
     {
@@ -50,6 +49,15 @@ export function DesktopNavbar({ isAdmin }: DesktopNavbarProps) {
     }
   ];
 
+  const params = useParams();
+  const paramsArray = Object.values(params);
+
+  const separator = "/";
+
+  const pathname = usePathname();
+  const pathnameArray = pathname.split(separator);
+  const pathnameWithoutParams = pathnameArray.filter((path) => !paramsArray.includes(path)).join(separator);
+
   return (
     <div className="hidden items-center gap-4 md:flex">
       {links.map(({ href, testId, label, isAdminLink }) => {
@@ -67,7 +75,7 @@ export function DesktopNavbar({ isAdmin }: DesktopNavbarProps) {
                 variant: "link",
                 className: "size-min p-0"
               }),
-              pathname.includes(href) && "underline"
+              href === pathnameWithoutParams && "underline"
             )}
           >
             {label}
