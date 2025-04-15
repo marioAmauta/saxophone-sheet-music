@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -22,6 +23,8 @@ export function ResetPasswordForm() {
 
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<ResetPasswordSchemaType>({
@@ -34,9 +37,18 @@ export function ResetPasswordForm() {
 
   async function onSubmit({ password }: ResetPasswordSchemaType) {
     startTransition(async () => {
+      const token = searchParams.get("token");
+
+      if (!token) {
+        toast.error(t("resetPasswordError"));
+
+        return;
+      }
+
       await authClient.resetPassword(
         {
-          newPassword: password
+          newPassword: password,
+          token
         },
         {
           onSuccess: () => {

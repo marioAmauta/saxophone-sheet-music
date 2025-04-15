@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Suspense } from "react";
 
 import { Link } from "@/i18n/navigation";
 
@@ -16,7 +17,9 @@ export default function ResetPasswordPage() {
   return (
     <PageContainer>
       <TypographyH1>{t("title")}</TypographyH1>
-      <ResetPasswordForm />
+      <Suspense>
+        <ResetPasswordForm />
+      </Suspense>
       <div className="flex justify-center">
         <Link href={AppRoutes.forgotPasswordPage} className={buttonVariants({ variant: "link" })}>
           {t("goToRecoverPassword")}
