@@ -19,6 +19,7 @@ Built by a developer who is also a musician — for musicians around the world.
 - **Shadcn** – UI Components
 - **Uploadthing** – File Uploads
 - **Better-Auth** – Authentication
+- **Sendgrid** – Email Client
 - **Next-Intl** – Internationalization
 - **Zod** – Validations
 - **React-Hook-Form** – Forms
