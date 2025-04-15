@@ -1,8 +1,13 @@
 import prisma from "@/db";
+import sgMail from "@sendgrid/mail";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import { ObjectId } from "mongodb";
+import { cookies } from "next/headers";
+import { createTranslator, Locale } from "use-intl/core";
+
+import { routing } from "@/i18n/routing";
 
 import { authCookieName } from "@/lib/constants";
 import { Roles } from "@/lib/enums";
@@ -24,7 +29,37 @@ export const auth = betterAuth({
     provider: "mongodb"
   }),
   emailAndPassword: {
-    enabled: true
+    enabled: true,
+    sendResetPassword: async ({ user, url }) => {
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+
+      const cookiesObject = await cookies();
+
+      const locale = (cookiesObject.get("NEXT_LOCALE")?.value as Locale) || routing.defaultLocale;
+
+      const t = createTranslator({
+        locale,
+        messages: {
+          en: {
+            subject: "Recover Password",
+            text: "Recover your password in"
+          },
+          es: {
+            subject: "Recuperar contraseña",
+            text: "Recupera tu contraseña en"
+          }
+        }
+      });
+
+      const message = {
+        to: user.email,
+        from: process.env.SENDGRID_FROM_EMAIL!,
+        subject: t(`${locale}.subject`),
+        text: `${t(`${locale}.text`)}: ${url}`
+      };
+
+      await sgMail.send(message);
+    }
   },
   user: {
     additionalFields: {

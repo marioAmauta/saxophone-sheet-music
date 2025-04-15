@@ -11,7 +11,7 @@ type MessageWithLinkProps = {
 
 export function MessageWithLink({ messageText, href, dataCyLink, linkLabel }: MessageWithLinkProps) {
   return (
-    <div className="py-4 text-center">
+    <div className="text-center">
       <p>{messageText}</p>
       <Link
         href={href}

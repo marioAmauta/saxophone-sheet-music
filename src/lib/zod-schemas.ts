@@ -32,6 +32,35 @@ export const registerSchema = (t: (key: IntlPath) => string) =>
 
 export type RegisterSchemaType = z.infer<ReturnType<typeof registerSchema>>;
 
+export const resetPasswordSchema = (t: (key: IntlPath) => string) =>
+  z
+    .object({
+      password: z
+        .string()
+        .trim()
+        .min(4, { message: t("password.errorMessage") }),
+      confirmPassword: z
+        .string()
+        .trim()
+        .min(4, { message: t("confirmPassword.errorMessage") })
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      path: [DATA_CY_ELEMENTS.registerForm.confirmPassword],
+      message: t("confirmPassword.errorMatchMessage")
+    });
+
+export type ResetPasswordSchemaType = z.infer<ReturnType<typeof resetPasswordSchema>>;
+
+export const forgotPasswordSchema = (t: (key: IntlPath) => string) =>
+  z.object({
+    email: z
+      .string()
+      .trim()
+      .email({ message: t("email.errorMessage") })
+  });
+
+export type ForgotPasswordSchemaType = z.infer<ReturnType<typeof forgotPasswordSchema>>;
+
 export const loginSchema = (t: (key: IntlPath) => string) =>
   z.object({
     email: z

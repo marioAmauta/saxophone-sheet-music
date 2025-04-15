@@ -87,12 +87,38 @@
     "invalidCredentials": "Correo electrónico y/o contraseña inválidos.",
     "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
     "shouldChooseAnotherEmail": "El correo electrónico ya está en uso, por favor elige otro.",
+    "updatePassword": "Actualizar contraseña",
+    "resetPasswordError": "Error al restablecer la contraseña.",
     "registerSubmit": "Crear cuenta"
+  },
+  "ResetPasswordPage": {
+    "title": "Nueva Contraseña",
+    "goToRecoverPassword": "Ir a Recuperar Contraseña"
+  },
+  "ResetMailSentPage": {
+    "title": "Revisa tu correo",
+    "alertTitle": "Enlace de Recuperación Enviado",
+    "alertDescription": "Revisa tu correo para encontrar un enlace para restablecer tu contraseña. Si no lo ves, revisa tu carpeta de spam.",
+    "goToRecoverPassword": "Ir a Recuperar Contraseña"
+  },
+  "ForgotPasswordPage": {
+    "title": "Recuperar Contraseña",
+    "goToLoginPageButton": "Volver al Inicio de Sesión"
+  },
+  "ForgotPasswordForm": {
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "Ingresa tu correo electrónico",
+      "errorMessage": "Ingresa un correo electrónico válido",
+      "alreadyUsedEmail": "El correo electrónico ya está en uso, por favor elige otro."
+    },
+    "submitButton": "Recuperar Contraseña"
   },
   "LoginPage": {
     "title": "Iniciar sesión",
     "noAccount": "¿No tienes una cuenta?",
-    "registerLink": "Crear una cuenta"
+    "registerLink": "Crear una cuenta",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?"
   },
   "LoginForm": {
     "email": {

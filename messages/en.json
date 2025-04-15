@@ -87,12 +87,38 @@
     "invalidCredentials": "Email and/or password invalid.",
     "passwordTooShort": "Password must have at least 8 characters",
     "shouldChooseAnotherEmail": "Email is already used, please choose another one.",
+    "updatePassword": "Update Password",
+    "resetPasswordError": "Error resetting password.",
     "registerSubmit": "Create account"
+  },
+  "ResetPasswordPage": {
+    "title": "New Password",
+    "goToRecoverPassword": "Go to Recover Password"
+  },
+  "ResetMailSentPage": {
+    "title": "Check your email",
+    "alertTitle": "Reset Link Sent",
+    "alertDescription": "Check your email for a link to reset your password. if you don't see it, check your spam folder.",
+    "goToRecoverPassword": "Go to Recover Password"
+  },
+  "ForgotPasswordPage": {
+    "title": "Recover Password",
+    "goToLoginPageButton": "Go back to Login"
+  },
+  "ForgotPasswordForm": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email",
+      "errorMessage": "Enter a valid email address",
+      "alreadyUsedEmail": "Email is already used, please choose another one."
+    },
+    "submitButton": "Recover Password"
   },
   "LoginPage": {
     "title": "Login",
     "noAccount": "Don't have an account?",
-    "registerLink": "Create an account"
+    "registerLink": "Create an account",
+    "forgotPasswordLink": "Forgot your password?"
   },
   "LoginForm": {
     "email": {

@@ -3,6 +3,9 @@ export class AppRoutes {
 
   static readonly loginPage = "/login";
   static readonly registerPage = "/register";
+  static readonly forgotPasswordPage = "/forgot-password";
+  static readonly resetPasswordPage = "/reset-password";
+  static readonly resetMailSentPage = "/reset-mail-sent";
 
   static readonly musicalGenresPage = "/musical-genres";
   static readonly musicalGenreDetailPage = ({ musicalGenre }: { musicalGenre: string }) =>
