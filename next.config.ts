@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
-    createMessagesDeclaration: ["./messages/en.json", "./messages/es.json"]
+    createMessagesDeclaration: "./messages/en.json"
   }
 });
 
