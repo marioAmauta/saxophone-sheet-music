@@ -170,7 +170,7 @@ export function EditSongForm({ song }: EditSongFormProps) {
         />
         <UploadButton
           endpoint="audioUploader"
-          className="ut-button:w-full ut-button:bg-foreground"
+          className="ut-button:w-full ut-button:bg-foreground ut-button:text-primary-foreground"
           onClientUploadComplete={(res) => {
             const response = res[0];
 
@@ -229,7 +229,7 @@ export function EditSongForm({ song }: EditSongFormProps) {
             />
             <UploadButton
               endpoint="pdfUploader"
-              className="ut-button:w-full ut-button:bg-foreground"
+              className="ut-button:w-full ut-button:bg-foreground ut-button:text-primary-foreground"
               onClientUploadComplete={(res) => {
                 const response = res[0];
 
@@ -288,7 +288,7 @@ export function EditSongForm({ song }: EditSongFormProps) {
             />
             <UploadButton
               endpoint="pdfUploader"
-              className="ut-button:w-full ut-button:bg-foreground"
+              className="ut-button:w-full ut-button:bg-foreground ut-button:text-primary-foreground"
               onClientUploadComplete={(res) => {
                 const response = res[0];
 
@@ -347,7 +347,7 @@ export function EditSongForm({ song }: EditSongFormProps) {
             />
             <UploadButton
               endpoint="pdfUploader"
-              className="ut-button:w-full ut-button:bg-foreground"
+              className="ut-button:w-full ut-button:bg-foreground ut-button:text-primary-foreground"
               onClientUploadComplete={(res) => {
                 const response = res[0];
 
