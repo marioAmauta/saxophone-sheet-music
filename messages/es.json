@@ -398,5 +398,9 @@
   },
   "GoBackButton": {
     "label": "Volver atrás"
+  },
+  "ContributeButton": {
+    "label": "Contribuir",
+    "subject": "Quiero contribuir al proyecto de partituras de saxofón"
   }
 }

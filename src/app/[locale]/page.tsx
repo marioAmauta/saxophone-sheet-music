@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 
 import { AppRoutes } from "@/lib/app-routes";
 
+import { ContributeButton } from "@/components/contribute-button";
 import { GithubIcon } from "@/components/icons";
 import { SectionContainer } from "@/components/layout/sections";
 import { TypographyH1, TypographyH2, TypographyMuted } from "@/components/typography";
@@ -50,9 +51,12 @@ export default function HomePage() {
         <SectionContainer>
           <TypographyH1>{t("heroSection.title")}</TypographyH1>
           <TypographyMuted className="text-base md:text-xl">{t("heroSection.description")}</TypographyMuted>
-          <Link href={AppRoutes.songsPage} className={buttonVariants()}>
-            {t("heroSection.buttonLabel")}
-          </Link>
+          <div className="flex gap-4">
+            <Link href={AppRoutes.songsPage} className={buttonVariants()}>
+              {t("heroSection.buttonLabel")}
+            </Link>
+            <ContributeButton />
+          </div>
         </SectionContainer>
       </div>
       <SectionContainer>
@@ -95,9 +99,12 @@ export default function HomePage() {
       <SectionContainer>
         <TypographyH2>{t("ctaSection.title")}</TypographyH2>
         <TypographyMuted className="text-base md:text-xl">{t("ctaSection.description")}</TypographyMuted>
-        <Link href={AppRoutes.songsPage} className={buttonVariants()}>
-          {t("ctaSection.buttonLabel")}
-        </Link>
+        <div className="flex gap-4">
+          <Link href={AppRoutes.songsPage} className={buttonVariants()}>
+            {t("ctaSection.buttonLabel")}
+          </Link>
+          <ContributeButton />
+        </div>
       </SectionContainer>
     </>
   );

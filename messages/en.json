@@ -398,5 +398,9 @@
   },
   "GoBackButton": {
     "label": "Go Back"
+  },
+  "ContributeButton": {
+    "label": "Contribute",
+    "subject": "I want to contribute to the sax sheet project"
   }
 }
