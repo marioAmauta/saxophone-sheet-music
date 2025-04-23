@@ -108,10 +108,7 @@ export const songSchema = (t: (key: IntlPath) => string) =>
       id: z.string().trim().optional(),
       fileName: z.string().trim(),
       fileKey: z.string().trim(),
-      fileUrl: z
-        .string()
-        .trim()
-        .min(1, { message: t("audioFileLink.errorMessage") })
+      fileUrl: z.string().trim()
     }),
     sheets: z.object({
       [SheetInstrumentKey.sopranoSax.toString()]: z.object({

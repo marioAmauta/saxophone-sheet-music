@@ -1,8 +1,7 @@
 "use server";
 
 import prisma from "@/db";
-import { SheetFile } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { Prisma, SheetFile } from "@prisma/client";
 import { getLocale, getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -87,20 +86,24 @@ export async function createSongAction(data: unknown): Promise<ActionReturnType 
         title: songData.song.title,
         youTubeLink: songData.song.youTubeLink,
         originalSongLink: songData.song.originalSongLink,
-        audioFiles: {
-          create: {
-            fileName: songData.song.audioFile.fileName,
-            url: songData.song.audioFile.fileUrl,
-            key: songData.song.audioFile.fileKey
-          }
-        },
+        ...(songData.song.audioFile.fileUrl
+          ? {
+              audioFiles: {
+                create: {
+                  fileName: songData.song.audioFile.fileName,
+                  url: songData.song.audioFile.fileUrl,
+                  key: songData.song.audioFile.fileKey
+                }
+              }
+            }
+          : {}),
         ...(sheetsToInsert.length ? { sheets: { createMany: { data: sheetsToInsert } } } : {})
       }
     });
   } catch (error) {
     console.error(error);
 
-    if (error instanceof PrismaClientKnownRequestError) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === PRISMA_ERRORS.uniqueConstraint) {
         if (error.message.includes("slug")) {
           return {
@@ -264,7 +267,7 @@ export async function editSongAction(data: unknown): Promise<ActionReturnType | 
   } catch (error) {
     console.error(error);
 
-    if (error instanceof PrismaClientKnownRequestError) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === PRISMA_ERRORS.uniqueConstraint) {
         if (error.message.includes("audioFiles")) {
           return {

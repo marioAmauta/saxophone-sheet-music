@@ -283,8 +283,7 @@
     },
     "audioFileLink": {
       "label": "Link del Archivo de Audio",
-      "placeholder": "Ingresa el link del archivo",
-      "errorMessage": "Debes ingresar el link del archivo de audio"
+      "placeholder": "Ingresa el link del archivo"
     },
     "instrumentsSection": {
       "legend": "Instrumentos",

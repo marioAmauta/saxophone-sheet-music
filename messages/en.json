@@ -283,8 +283,7 @@
     },
     "audioFileLink": {
       "label": "Audio File Link",
-      "placeholder": "Enter audio file link",
-      "errorMessage": "Should enter an audio file link"
+      "placeholder": "Enter audio file link"
     },
     "instrumentsSection": {
       "legend": "Instruments",
