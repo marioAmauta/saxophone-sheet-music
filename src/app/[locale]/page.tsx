@@ -2,7 +2,6 @@ import { Search, Download, BookOpen, Users, Heart, Handshake } from "lucide-reac
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
 
 import { AppRoutes } from "@/lib/app-routes";
 
@@ -12,12 +11,6 @@ import { SectionContainer } from "@/components/layout/sections";
 import { TypographyH1, TypographyH2, TypographyMuted } from "@/components/typography";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
-export const experimental_ppr = true;
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default function HomePage() {
   const t = useTranslations("HomePage");

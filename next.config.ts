@@ -6,10 +6,6 @@ const nextConfig: NextConfig = {
     fetches: {
       fullUrl: true
     }
-  },
-  experimental: {
-    ppr: "incremental",
-    nodeMiddleware: true
   }
 };
 

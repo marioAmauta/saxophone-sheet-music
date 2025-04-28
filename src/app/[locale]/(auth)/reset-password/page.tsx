@@ -2,7 +2,6 @@ import { useTranslations } from "next-intl";
 import { Suspense } from "react";
 
 import { Link } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
 
 import { AppRoutes } from "@/lib/app-routes";
 
@@ -11,12 +10,6 @@ import { TypographyH1 } from "@/components/typography";
 import { buttonVariants } from "@/components/ui/button";
 
 import { ResetPasswordForm } from "./reset-password-form";
-
-export const experimental_ppr = true;
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default function ResetPasswordPage() {
   const t = useTranslations("ResetPasswordPage");

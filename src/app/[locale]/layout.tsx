@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Metadata } from "next";
 import { hasLocale, Locale, NextIntlClientProvider } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
@@ -18,6 +18,10 @@ import { routing } from "@/i18n/routing";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
@@ -39,6 +43,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  setRequestLocale(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning>

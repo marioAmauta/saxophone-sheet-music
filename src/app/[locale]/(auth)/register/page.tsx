@@ -1,7 +1,5 @@
 import { useTranslations } from "next-intl";
 
-import { routing } from "@/i18n/routing";
-
 import { AppRoutes } from "@/lib/app-routes";
 import { DATA_CY_ELEMENTS } from "@/lib/constants";
 
@@ -10,12 +8,6 @@ import { PageContainer } from "@/components/layout/sections";
 import { TypographyH1 } from "@/components/typography";
 
 import { RegisterForm } from "./register-form";
-
-export const experimental_ppr = true;
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default function RegisterPage() {
   const t = useTranslations("RegisterPage");

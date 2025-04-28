@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
 
 import { AppRoutes } from "@/lib/app-routes";
 import { DATA_CY_ELEMENTS } from "@/lib/constants";
@@ -11,12 +10,6 @@ import { PageContainer } from "@/components/layout/sections";
 import { LoginForm } from "@/components/login-form";
 import { TypographyH1 } from "@/components/typography";
 import { buttonVariants } from "@/components/ui/button";
-
-export const experimental_ppr = true;
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default function LoginPage() {
   const t = useTranslations("LoginPage");
