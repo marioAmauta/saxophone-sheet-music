@@ -31,9 +31,10 @@ function BreadcrumbLink({
   asChild,
   className,
   ...props
-}: React.ComponentProps<typeof Link> & {
-  asChild?: boolean;
-}) {
+}: React.ComponentProps<typeof Link> &
+  React.ComponentProps<typeof Slot> & {
+    asChild?: boolean;
+  }) {
   const Comp = asChild ? Slot : Link;
 
   return (
