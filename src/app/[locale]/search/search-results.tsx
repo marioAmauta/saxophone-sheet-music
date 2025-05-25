@@ -1,9 +1,14 @@
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
 
-import { getSongsBySongTitleOrArtistName } from "@/app/search/actions";
+import { getSearchedTotalSong, getSongsBySongTitleOrArtistName } from "@/data-access/song";
 
 import { AppRoutes } from "@/lib/app-routes";
+import { SortOptions } from "@/lib/types";
+import { getPaginationParams, getSortingOption } from "@/lib/utils";
 
+import { PaginationControl } from "@/components/layout/pagination-control";
+import { SortingControl, SortingOptionsArray } from "@/components/layout/sorting-control";
 import { SongCard } from "@/components/song-card";
 import { SongsList } from "@/components/songs-list";
 import { TypographyLarge } from "@/components/typography";
@@ -11,17 +16,39 @@ import { TypographyLarge } from "@/components/typography";
 import { RecentSearches } from "./recent-searches";
 
 type SearchResultsProps = {
-  userSearch: string;
+  searchParams: SearchParamsSync;
 };
 
-export async function SearchResults({ userSearch }: SearchResultsProps) {
+export async function SearchResults({ searchParams }: SearchResultsProps) {
   const t = await getTranslations("SearchResults");
+  const tSorting = await getTranslations("sorting");
+
+  const userSearch = searchParams.q as string;
 
   if (!userSearch) {
     return <RecentSearches />;
   }
 
-  const foundSongs = await getSongsBySongTitleOrArtistName({ userSearch });
+  const { page, limit, start, end } = getPaginationParams({ searchParams });
+
+  const sortingOptionsArray: SortingOptionsArray = [
+    { label: tSorting("az"), value: "azSong" },
+    { label: tSorting("za"), value: "zaSong" },
+    { label: tSorting("latest"), value: "newest" },
+    { label: tSorting("oldest"), value: "oldest" }
+  ];
+
+  const sort = searchParams.sort as SortOptions;
+
+  const [foundSongs, totalFoundSongs] = await Promise.all([
+    getSongsBySongTitleOrArtistName({
+      userSearch,
+      skip: start,
+      take: limit,
+      sort: getSortingOption(sort || sortingOptionsArray[0].value)
+    }),
+    getSearchedTotalSong({ userSearch })
+  ]);
 
   if (foundSongs.length > 0) {
     return (
@@ -30,11 +57,24 @@ export async function SearchResults({ userSearch }: SearchResultsProps) {
           <TypographyLarge>{t("withResult")}</TypographyLarge>
           <TypographyLarge className="break-all">{`"${userSearch}"`}</TypographyLarge>
         </div>
+        <Suspense>
+          <SortingControl
+            key={sort}
+            quantityLabel={t("quantityLabel")}
+            start={start}
+            end={end}
+            totalItems={totalFoundSongs}
+            sortingOptions={sortingOptionsArray}
+          />
+        </Suspense>
         <SongsList>
           {foundSongs.map((song) => (
             <SongCard key={song.slug} href={AppRoutes.songsPageDetail({ slug: song.slug })} {...song} />
           ))}
         </SongsList>
+        <Suspense>
+          <PaginationControl start={start} end={end} page={page} limit={limit} totalItems={totalFoundSongs} />
+        </Suspense>
       </>
     );
   }

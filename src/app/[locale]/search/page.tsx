@@ -15,13 +15,15 @@ import { SearchFormProvider } from "./search-form-provider";
 import { SearchResults } from "./search-results";
 
 type SearchPageProps = {
-  searchParams: SearchParams<{ q: string }>;
+  searchParams: SearchParams;
 };
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const t = await getTranslations("SearchPage");
 
-  const { q: userSearch } = await searchParams;
+  const awaitedSearchParams = await searchParams;
+
+  const userSearch = awaitedSearchParams.q as string;
 
   const tNavbar = await getTranslations("navbar");
 
@@ -45,7 +47,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         <>
           <SearchForm />
           <Suspense fallback={<SimpleLoader />}>
-            <SearchResults userSearch={userSearch} />
+            <SearchResults searchParams={awaitedSearchParams} />
           </Suspense>
         </>
       </SearchFormProvider>

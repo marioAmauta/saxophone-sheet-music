@@ -4,6 +4,67 @@ import { cache } from "react";
 import { getUserSession } from "@/lib/session";
 import { PaginationArgs, SongCardDataType } from "@/lib/types";
 
+export const getSongsBySongTitleOrArtistName = cache(
+  async ({ userSearch, skip, sort, take }: { userSearch: string } & PaginationArgs) => {
+    return await prisma.song.findMany({
+      where: {
+        OR: [
+          {
+            title: {
+              mode: "insensitive",
+              contains: userSearch
+            }
+          },
+          {
+            artist: {
+              artistName: {
+                mode: "insensitive",
+                contains: userSearch
+              }
+            }
+          }
+        ]
+      },
+      skip,
+      take,
+      orderBy: sort,
+      select: {
+        slug: true,
+        title: true,
+        artist: {
+          select: {
+            artistName: true,
+            musicalGenre: true
+          }
+        }
+      }
+    });
+  }
+);
+
+export const getSearchedTotalSong = cache(async ({ userSearch }: { userSearch: string }) => {
+  return await prisma.song.count({
+    where: {
+      OR: [
+        {
+          title: {
+            mode: "insensitive",
+            contains: userSearch
+          }
+        },
+        {
+          artist: {
+            artistName: {
+              mode: "insensitive",
+              contains: userSearch
+            }
+          }
+        }
+      ]
+    }
+  });
+});
+
 export const getSongs = cache(async ({ skip, take, sort }: PaginationArgs): Promise<SongCardDataType[]> => {
   return await prisma.song.findMany({
     skip,

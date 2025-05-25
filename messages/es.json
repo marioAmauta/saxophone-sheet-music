@@ -154,7 +154,8 @@
   "SearchResults": {
     "messageText": "Busca por canción o artista",
     "withResult": "Resultados para:",
-    "withoutResult": "No se encontraron resultados para:"
+    "withoutResult": "No se encontraron resultados para:",
+    "quantityLabel": "canciones encontradas"
   },
   "RecentSearches": {
     "title": "Búsquedas Recientes",
