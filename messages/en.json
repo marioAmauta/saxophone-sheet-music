@@ -12,7 +12,8 @@
     "heroSection": {
       "title": "Saxophone Sheet Music",
       "description": "Access, download, and contribute to our growing collection of saxophone sheet music.",
-      "buttonLabel": "Browse Library"
+      "browseLibraryButton": "Browse Library",
+      "loginButton": "Login"
     },
     "featuresSection": {
       "title": "Everything You Need",
@@ -76,12 +77,12 @@
     "password": {
       "label": "Password",
       "placeholder": "Enter your password",
-      "errorMessage": "Password must have at least 4 characters"
+      "errorMessage": "Password must have at least 8 characters"
     },
     "confirmPassword": {
       "label": "Confirm Password",
       "placeholder": "Confirm your password",
-      "errorMessage": "Password must have at least 4 characters",
+      "errorMessage": "Password must have at least 8 characters",
       "errorMatchMessage": "Passwords do not match"
     },
     "invalidCredentials": "Email and/or password invalid.",
@@ -130,7 +131,7 @@
     "password": {
       "label": "Password",
       "placeholder": "Enter your password",
-      "errorMessage": "Password must have at least 4 characters"
+      "errorMessage": "Password must have at least 8 characters"
     },
     "invalidCredentials": "Email and/or password invalid.",
     "loginSubmit": "Login"

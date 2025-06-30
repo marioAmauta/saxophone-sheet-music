@@ -12,7 +12,8 @@
     "heroSection": {
       "title": "Partituras para Saxofón",
       "description": "Accede, descarga y contribuye a nuestra creciente colección de partituras para saxofón.",
-      "buttonLabel": "Explorar Biblioteca"
+      "browseLibraryButton": "Explorar Biblioteca",
+      "loginButton": "Iniciar sesión"
     },
     "featuresSection": {
       "title": "Todo lo que Necesitas",
@@ -76,12 +77,12 @@
     "password": {
       "label": "Contraseña",
       "placeholder": "Ingresa tu contraseña",
-      "errorMessage": "La contraseña debe tener al menos 4 caracteres"
+      "errorMessage": "La contraseña debe tener al menos 8 caracteres"
     },
     "confirmPassword": {
       "label": "Confirmar Contraseña",
       "placeholder": "Confirma tu contraseña",
-      "errorMessage": "La contraseña debe tener al menos 4 caracteres",
+      "errorMessage": "La contraseña debe tener al menos 8 caracteres",
       "errorMatchMessage": "Las contraseñas no coinciden"
     },
     "invalidCredentials": "Correo electrónico y/o contraseña inválidos.",
@@ -130,7 +131,7 @@
     "password": {
       "label": "Contraseña",
       "placeholder": "Ingresa tu contraseña",
-      "errorMessage": "La contraseña debe tener al menos 4 caracteres"
+      "errorMessage": "La contraseña debe tener al menos 8 caracteres"
     },
     "invalidCredentials": "Correo electrónico y/o contraseña inválidos.",
     "loginSubmit": "Iniciar sesión"

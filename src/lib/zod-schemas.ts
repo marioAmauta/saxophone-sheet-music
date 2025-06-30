@@ -19,11 +19,11 @@ export const registerSchema = (t: (key: IntlPath) => string) =>
       password: z
         .string()
         .trim()
-        .min(4, { message: t("password.errorMessage") }),
+        .min(8, { message: t("password.errorMessage") }),
       confirmPassword: z
         .string()
         .trim()
-        .min(4, { message: t("confirmPassword.errorMessage") })
+        .min(8, { message: t("confirmPassword.errorMessage") })
     })
     .refine((data) => data.password === data.confirmPassword, {
       path: [DATA_CY_ELEMENTS.registerForm.confirmPassword],
@@ -38,11 +38,11 @@ export const resetPasswordSchema = (t: (key: IntlPath) => string) =>
       password: z
         .string()
         .trim()
-        .min(4, { message: t("password.errorMessage") }),
+        .min(8, { message: t("password.errorMessage") }),
       confirmPassword: z
         .string()
         .trim()
-        .min(4, { message: t("confirmPassword.errorMessage") })
+        .min(8, { message: t("confirmPassword.errorMessage") })
     })
     .refine((data) => data.password === data.confirmPassword, {
       path: [DATA_CY_ELEMENTS.registerForm.confirmPassword],
@@ -70,7 +70,7 @@ export const loginSchema = (t: (key: IntlPath) => string) =>
     password: z
       .string()
       .trim()
-      .min(4, {
+      .min(8, {
         message: t("password.errorMessage")
       })
   });

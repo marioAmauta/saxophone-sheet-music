@@ -61,16 +61,22 @@ export function RegisterForm() {
           onSuccess: () => {
             router.replace(redirectLink || AppRoutes.homePage);
             router.refresh();
+
+            removeRedirectLink();
           },
           onError: ({ error }) => {
             switch (error.code as keyof typeof authClient.$ERROR_CODES) {
               case "USER_ALREADY_EXISTS": {
-                toast.error(t("email.alreadyUsedEmail"));
+                form.setError("email", {
+                  message: t("email.alreadyUsedEmail")
+                });
 
                 return;
               }
               case "PASSWORD_TOO_SHORT": {
-                toast.error(t("passwordTooShort"));
+                form.setError("password", {
+                  message: t("passwordTooShort")
+                });
 
                 return;
               }
@@ -78,8 +84,6 @@ export function RegisterForm() {
           }
         }
       );
-
-      removeRedirectLink();
     });
   }
 

@@ -46,13 +46,13 @@ export function UserOptionsDropdown({ user }: UserOptionsDropdownProps) {
   async function handleSignOut() {
     setIsOpen(false);
 
-    removeRedirectLink();
-
     startTransition(async () => {
       await authClient.signOut({
         fetchOptions: {
           onSuccess() {
             router.refresh();
+
+            removeRedirectLink();
           }
         }
       });

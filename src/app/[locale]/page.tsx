@@ -12,6 +12,8 @@ import { TypographyH1, TypographyH2, TypographyMuted } from "@/components/typogr
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+import { LoginButton } from "./login-button";
+
 export default function HomePage() {
   const t = useTranslations("HomePage");
 
@@ -46,9 +48,10 @@ export default function HomePage() {
           <TypographyMuted className="text-base md:text-xl">{t("heroSection.description")}</TypographyMuted>
           <div className="flex gap-4">
             <Link href={AppRoutes.songsPage} className={buttonVariants()}>
-              {t("heroSection.buttonLabel")}
+              {t("heroSection.browseLibraryButton")}
             </Link>
             <ContributeButton />
+            <LoginButton />
           </div>
         </SectionContainer>
       </div>
