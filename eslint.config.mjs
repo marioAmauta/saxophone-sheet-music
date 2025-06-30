@@ -44,5 +44,5 @@ export default defineConfig([
       ]
     }
   },
-  globalIgnores([".next"])
+  globalIgnores([".next", "playwright-report"])
 ]);
