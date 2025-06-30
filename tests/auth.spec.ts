@@ -20,7 +20,7 @@ test.describe("Auth", () => {
         .getByRole("textbox", { name: en.RegisterForm.confirmPassword.label, exact: true })
         .fill(newUser.password);
       await page.getByRole("button", { name: en.RegisterForm.registerSubmit }).click();
-      await expect(page.getByRole("heading", { name: en.HomePage.heroSection.title })).toBeVisible();
+      await page.getByRole("heading", { name: en.HomePage.heroSection.title }).waitFor();
       await expect(loginButton).not.toBeVisible();
     });
 
@@ -58,6 +58,7 @@ test.describe("Auth", () => {
       await page.getByRole("textbox", { name: en.LoginForm.email.label }).fill(newUser.email);
       await page.getByRole("textbox", { name: en.LoginForm.password.label }).fill(newUser.password);
       await page.getByRole("button", { name: en.LoginForm.loginSubmit, exact: true }).click();
+      await page.getByRole("heading", { name: en.HomePage.heroSection.title }).waitFor();
       await expect(loginButton).not.toBeVisible();
       await page.getByRole("navigation").getByRole("button").click();
       await page.getByRole("button", { name: en.LogOutButton.logOutLabel }).click();
@@ -78,7 +79,7 @@ test.describe("Auth", () => {
       await emailInput.fill(newUserErrorData.email);
       await page.getByRole("textbox", { name: en.LoginForm.password.label }).fill(newUserErrorData.password);
       await loginSubmitButton.click();
-      await expect(page.getByText(en.LoginForm.invalidCredentials)).toBeVisible({ timeout: 5000 });
+      await expect(page.getByText(en.LoginForm.invalidCredentials)).toBeVisible();
     });
   });
 });
