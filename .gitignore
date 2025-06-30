@@ -46,3 +46,6 @@ messages/*.d.json.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# next-intl
+messages/*.d.json.ts
