@@ -26,5 +26,17 @@ export class AppRoutes {
 
   static readonly accountRequiredPage = "/account-required";
 
+  static readonly downloadApi = ({
+    format,
+    songName,
+    artistName,
+    videoUrl
+  }: {
+    format: "mp3" | "mp4";
+    songName: string;
+    artistName: string;
+    videoUrl: string;
+  }) => `/api/download/${format}?videoUrl=${videoUrl}&songName=${songName}&artistName=${artistName}`;
+
   static readonly projectOnGithub = "https://github.com/marioAmauta/saxophone-sheet-music";
 }

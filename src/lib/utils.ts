@@ -56,3 +56,21 @@ export function getPaginationParams({ searchParams }: { searchParams: SearchPara
 export function eventPreventDefault(event: Event) {
   event.preventDefault();
 }
+
+export function getYouTubeVideoId(videoUrl: string) {
+  const idKeyShortUrl = "https://youtu.be/";
+
+  const idKeyLongUrl = "https://www.youtube.com/watch?v";
+
+  let videoId: string | null = null;
+
+  if (videoUrl.includes(idKeyShortUrl)) {
+    videoId = new URL(videoUrl).pathname.replace("/", "");
+  }
+
+  if (videoUrl.includes(idKeyLongUrl)) {
+    videoId = new URLSearchParams(videoUrl).get(idKeyLongUrl);
+  }
+
+  return videoId;
+}

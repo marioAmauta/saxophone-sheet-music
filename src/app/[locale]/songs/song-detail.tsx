@@ -138,6 +138,19 @@ export async function SongDetail({ params, songSegment }: SongDetailProps) {
             <Video className="size-4" />
             <span>{t("youTubeLink")}</span>
           </a>
+          <a
+            href={`${AppRoutes.downloadApi({
+              format: "mp4",
+              songName: song.title,
+              artistName: song.artist.artistName,
+              videoUrl: song.youTubeLink
+            })}`}
+            download
+            className={buttonVariants({ variant: "outline", className: "flex gap-2" })}
+          >
+            <Download className="size-4" />
+            <span>{t("downloadYouTubeVideo")}</span>
+          </a>
           {song.audioFiles.map((audioFile) => (
             <a
               key={audioFile.id}
