@@ -20,7 +20,9 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
     }
 
-    const innerTube = await Innertube.create();
+    const innerTube = await Innertube.create({
+      cookie: process.env.YOUTUBE_COOKIE || ""
+    });
 
     const { videoUrl, artistName, songName } = videoInfo.data;
 
