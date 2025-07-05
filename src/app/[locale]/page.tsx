@@ -46,7 +46,7 @@ export default function HomePage() {
         <SectionContainer>
           <TypographyH1>{t("heroSection.title")}</TypographyH1>
           <TypographyMuted className="text-base md:text-xl">{t("heroSection.description")}</TypographyMuted>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Link href={AppRoutes.songsPage} className={buttonVariants()}>
               {t("heroSection.browseLibraryButton")}
             </Link>
