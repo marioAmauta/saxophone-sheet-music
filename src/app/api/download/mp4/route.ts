@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Innertube, UniversalCache } from "youtubei.js";
+import { Innertube } from "youtubei.js";
 import { z } from "zod";
 
 import { getYouTubeVideoId } from "@/lib/utils";
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
     }
 
-    const innerTube = await Innertube.create({ cache: new UniversalCache(true) });
+    const innerTube = await Innertube.create();
 
     const { videoUrl, artistName, songName } = videoInfo.data;
 
