@@ -1,5 +1,6 @@
 import { BookOpenText, Download, Edit, Music, Music2, Video } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { LikeSongButton } from "@/app/songs/like-song-button";
@@ -8,6 +9,7 @@ import { isLikedSong, getSongBySlug } from "@/data-access/song";
 
 import { Link } from "@/i18n/navigation";
 
+import { ApiRoutes } from "@/lib/api-routes";
 import { AppRoutes } from "@/lib/app-routes";
 import { getUserSession } from "@/lib/session";
 import { BreadcrumbItemType } from "@/lib/types";
@@ -69,38 +71,56 @@ export async function SongDetail({ params, songSegment }: SongDetailProps) {
     }
   ];
 
+  const songAlbumImage = await fetch(await ApiRoutes.spotifyApiSong({ songName: song.title }), {
+    cache: "force-cache",
+    next: {
+      revalidate: 3600 * 12
+    }
+  });
+
+  const songAlbumImageData = await songAlbumImage.json();
+
+  const bigImage = songAlbumImageData.images[0];
+
   return (
     <LikeProvider like={isFavorite}>
       <PageContainer>
-        <div className="grid grid-cols-[1fr_auto] gap-4">
-          <div className="flex flex-col gap-4">
-            <TypographyH1>{song.title}</TypographyH1>
-            <Link href={AppRoutes.artistsDetailPage({ slug: song.artist.slug })} className="w-fit">
+        <div className="flex flex-col items-center justify-center gap-4 md:flex-row-reverse md:gap-8">
+          {bigImage ? (
+            <Image
+              src={bigImage.url}
+              alt={`${song.title} image`}
+              width={bigImage.width}
+              height={bigImage.height}
+              priority
+              className="w-full max-w-[24rem] rounded"
+            />
+          ) : null}
+          <div className="flex flex-col items-center justify-center gap-2">
+            <TypographyH1 className="text-center text-balance">{song.title}</TypographyH1>
+            <Link href={AppRoutes.artistsDetailPage({ slug: song.artist.slug })}>
               <Badge>{song.artist.artistName}</Badge>
             </Link>
             {song.artist.musicalGenre ? (
-              <Link
-                href={AppRoutes.musicalGenreDetailPage({ musicalGenre: song.artist.musicalGenre })}
-                className="w-fit"
-              >
+              <Link href={AppRoutes.musicalGenreDetailPage({ musicalGenre: song.artist.musicalGenre })}>
                 <Badge>{capitalize(song.artist.musicalGenre)}</Badge>
               </Link>
             ) : null}
-          </div>
-          <div className="flex flex-col gap-2">
-            {isAdmin ? (
-              <>
-                <DeleteSongButton id={song.id} />
-                <Link
-                  href={AppRoutes.editSongPage({ slug })}
-                  className={buttonVariants({ variant: "outline", className: "flex items-center gap-2" })}
-                >
-                  <Edit className="size-4" />
-                  {t("editSongButton")}
-                </Link>
-              </>
-            ) : null}
-            <LikeSongButton className="hidden md:flex" songId={song.id} />
+            <div className="flex gap-2">
+              {isAdmin ? (
+                <>
+                  <DeleteSongButton id={song.id} />
+                  <Link
+                    href={AppRoutes.editSongPage({ slug })}
+                    className={buttonVariants({ variant: "outline", className: "flex items-center gap-2" })}
+                  >
+                    <Edit className="size-4" />
+                    {t("editSongButton")}
+                  </Link>
+                </>
+              ) : null}
+              <LikeSongButton className="hidden md:flex" songId={song.id} />
+            </div>
           </div>
         </div>
         <div className="space-y-4">

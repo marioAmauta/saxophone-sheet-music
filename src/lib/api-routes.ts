@@ -17,4 +17,7 @@ export class ApiRoutes {
 
   static readonly spotifyApiArtist = async ({ artistName }: { artistName: string }) =>
     `${await getHostUrl()}/api/spotify/artist/${artistName}`;
+
+  static readonly spotifyApiSong = async ({ songName }: { songName: string }) =>
+    `${await getHostUrl()}/api/spotify/track/${songName}`;
 }

@@ -110,29 +110,27 @@ export default async function ArtistDetailPage({ params, searchParams }: ArtistD
             className="w-full max-w-[24rem] rounded"
           />
         ) : null}
-        <div className="flex flex-col gap-2">
-          <TypographyH1>{foundArtist.artistName}</TypographyH1>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <TypographyH1 className="text-balance">{foundArtist.artistName}</TypographyH1>
           {foundArtist.musicalGenre ? (
-            <Link
-              href={AppRoutes.musicalGenreDetailPage({ musicalGenre: foundArtist.musicalGenre })}
-              className="mx-auto w-fit"
-            >
+            <Link href={AppRoutes.musicalGenreDetailPage({ musicalGenre: foundArtist.musicalGenre })}>
               <Badge>{capitalize(foundArtist.musicalGenre)}</Badge>
             </Link>
           ) : null}
-
-          {isAdmin ? (
-            <>
-              <DeleteArtistButton id={foundArtist.id} />
-              <Link
-                href={AppRoutes.editArtistPage({ slug: foundArtist.slug })}
-                className={buttonVariants({ variant: "outline", className: "flex items-center gap-2" })}
-              >
-                <Edit className="size-4" />
-                {t("editArtistButton")}
-              </Link>
-            </>
-          ) : null}
+          <div className="flex gap-2">
+            {isAdmin ? (
+              <>
+                <DeleteArtistButton id={foundArtist.id} />
+                <Link
+                  href={AppRoutes.editArtistPage({ slug: foundArtist.slug })}
+                  className={buttonVariants({ variant: "outline", className: "flex items-center gap-2" })}
+                >
+                  <Edit className="size-4" />
+                  {t("editArtistButton")}
+                </Link>
+              </>
+            ) : null}
+          </div>
         </div>
       </div>
       <div className="space-y-4">
