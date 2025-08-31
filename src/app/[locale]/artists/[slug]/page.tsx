@@ -1,6 +1,5 @@
 import { Edit } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { headers } from "next/headers";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -10,6 +9,7 @@ import { getArtistSongsById, getTotalArtistSongsById } from "@/data-access/song"
 
 import { Link } from "@/i18n/navigation";
 
+import { ApiRoutes } from "@/lib/api-routes";
 import { AppRoutes } from "@/lib/app-routes";
 import { getUserSession } from "@/lib/session";
 import { BreadcrumbItemType, SortOptions } from "@/lib/types";
@@ -86,11 +86,7 @@ export default async function ArtistDetailPage({ params, searchParams }: ArtistD
     }
   ];
 
-  const headersList = await headers();
-
-  const hostUrl = `${headersList.get("x-forwarded-proto")}://${headersList.get("host")}`;
-
-  const artistImage = await fetch(`${hostUrl}/api/spotify/artist/${foundArtist.artistName}`, {
+  const artistImage = await fetch(await ApiRoutes.spotifyApiArtist({ artistName: foundArtist.artistName }), {
     cache: "force-cache",
     next: {
       revalidate: 3600 * 12
