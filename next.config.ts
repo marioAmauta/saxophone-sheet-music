@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     fetches: {
       fullUrl: true
     }
+  },
+  images: {
+    remotePatterns: [new URL("https://i.scdn.co/image/*")]
   }
 };
 

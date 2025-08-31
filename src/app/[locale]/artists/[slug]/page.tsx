@@ -1,5 +1,7 @@
 import { Edit } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -84,18 +86,45 @@ export default async function ArtistDetailPage({ params, searchParams }: ArtistD
     }
   ];
 
+  const headersList = await headers();
+
+  const hostUrl = `${headersList.get("x-forwarded-proto")}://${headersList.get("host")}`;
+
+  const artistImage = await fetch(`${hostUrl}/api/spotify/artist/${foundArtist.artistName}`, {
+    cache: "force-cache",
+    next: {
+      revalidate: 3600 * 12
+    }
+  });
+
+  const artistImageData = await artistImage.json();
+
+  const bigImage = artistImageData.images[0];
+
   return (
     <PageContainer>
-      <div className="grid grid-cols-[1fr_auto] gap-4">
+      <div className="flex flex-col items-center justify-center gap-4 md:flex-row-reverse md:gap-8">
+        {bigImage ? (
+          <Image
+            src={bigImage.url}
+            alt={`${foundArtist.artistName} image`}
+            width={bigImage.width}
+            height={bigImage.height}
+            priority
+            className="w-full max-w-[24rem] rounded"
+          />
+        ) : null}
         <div className="flex flex-col gap-2">
           <TypographyH1>{foundArtist.artistName}</TypographyH1>
           {foundArtist.musicalGenre ? (
-            <Link href={AppRoutes.musicalGenreDetailPage({ musicalGenre: foundArtist.musicalGenre })} className="w-fit">
+            <Link
+              href={AppRoutes.musicalGenreDetailPage({ musicalGenre: foundArtist.musicalGenre })}
+              className="mx-auto w-fit"
+            >
               <Badge>{capitalize(foundArtist.musicalGenre)}</Badge>
             </Link>
           ) : null}
-        </div>
-        <div className="flex flex-col gap-2">
+
           {isAdmin ? (
             <>
               <DeleteArtistButton id={foundArtist.id} />
