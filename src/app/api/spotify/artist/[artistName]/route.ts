@@ -4,16 +4,14 @@ import { getAccessToken } from "@/api/spotify/utils";
 
 import { ApiRoutes } from "@/lib/api-routes";
 
-export async function GET(_req: Request, { params }: { params: Promise<{ name: string }> }) {
+export async function GET(_req: Request, { params }: { params: Promise<{ artistName: string }> }) {
   try {
-    const { name } = await params;
+    const { artistName } = await params;
 
     const token = await getAccessToken();
 
     const searchUrl = ApiRoutes.spotifySearchApi({
-      type: "artist",
-      limit: 1,
-      name
+      query: `?q=${artistName}&type=artist&limit=1`
     });
 
     const res = await fetch(searchUrl, {

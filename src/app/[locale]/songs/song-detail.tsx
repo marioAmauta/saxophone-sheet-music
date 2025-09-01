@@ -71,12 +71,15 @@ export async function SongDetail({ params, songSegment }: SongDetailProps) {
     }
   ];
 
-  const songAlbumImage = await fetch(await ApiRoutes.spotifyApiSong({ songName: song.title }), {
-    cache: "force-cache",
-    next: {
-      revalidate: 3600 * 12
+  const songAlbumImage = await fetch(
+    await ApiRoutes.spotifyApiSong({ songName: song.title, artistName: song.artist.artistName }),
+    {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600 * 12
+      }
     }
-  });
+  );
 
   const songAlbumImageData = await songAlbumImage.json();
 
