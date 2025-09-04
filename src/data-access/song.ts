@@ -33,6 +33,7 @@ export const getSongsBySongTitleOrArtistName = cache(
         title: true,
         artist: {
           select: {
+            slug: true,
             artistName: true,
             musicalGenre: true
           }
@@ -75,6 +76,7 @@ export const getSongs = cache(async ({ skip, take, sort }: PaginationArgs): Prom
       slug: true,
       artist: {
         select: {
+          slug: true,
           artistName: true,
           musicalGenre: true
         }
@@ -157,6 +159,7 @@ export async function getLikedSongs({ skip, sort, take, userId }: { userId: stri
           slug: true,
           artist: {
             select: {
+              slug: true,
               artistName: true,
               musicalGenre: true
             }

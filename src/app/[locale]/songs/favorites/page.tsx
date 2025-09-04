@@ -93,7 +93,7 @@ export default async function FavoriteSongsPage({ searchParams }: FavoriteSongsP
           </Suspense>
           <SongsList>
             {favoriteSongs.map((song) => (
-              <SongCard key={song.slug} href={AppRoutes.favoriteSongsPageDetail({ slug: song.slug })} {...song} />
+              <SongCard key={song.slug} {...song} />
             ))}
           </SongsList>
           <Suspense>

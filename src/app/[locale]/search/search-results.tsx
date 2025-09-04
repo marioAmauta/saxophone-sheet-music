@@ -3,7 +3,6 @@ import { Suspense } from "react";
 
 import { getSearchedTotalSong, getSongsBySongTitleOrArtistName } from "@/data-access/song";
 
-import { AppRoutes } from "@/lib/app-routes";
 import { SortOptions } from "@/lib/types";
 import { getPaginationParams, getSortingOption } from "@/lib/utils";
 
@@ -69,7 +68,7 @@ export async function SearchResults({ searchParams }: SearchResultsProps) {
         </Suspense>
         <SongsList>
           {foundSongs.map((song) => (
-            <SongCard key={song.slug} href={AppRoutes.songsPageDetail({ slug: song.slug })} {...song} />
+            <SongCard key={song.slug} {...song} />
           ))}
         </SongsList>
         <Suspense>

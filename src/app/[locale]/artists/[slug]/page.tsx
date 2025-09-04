@@ -153,9 +153,10 @@ export default async function ArtistDetailPage({ params, searchParams }: ArtistD
             {artistSongs.map((song) => (
               <SongCard
                 key={song.slug}
-                href={AppRoutes.songsPageDetail({ slug: song.slug })}
+                slug={song.slug}
                 title={song.title}
                 artist={{
+                  slug: foundArtist.slug,
                   artistName: foundArtist.artistName,
                   musicalGenre: foundArtist.musicalGenre
                 }}

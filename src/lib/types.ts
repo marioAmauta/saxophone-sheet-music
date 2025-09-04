@@ -10,6 +10,7 @@ export type SongCardDataType = Prisma.SongGetPayload<{
     title: true;
     artist: {
       select: {
+        slug: true;
         artistName: true;
         musicalGenre: true;
       };

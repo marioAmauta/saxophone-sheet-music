@@ -1,18 +1,20 @@
 import { Link } from "@/i18n/navigation";
 
 import { ApiRoutes } from "@/lib/api-routes";
+import { AppRoutes } from "@/lib/app-routes";
 import { SongCardDataType } from "@/lib/types";
-import { capitalize } from "@/lib/utils";
+import { capitalize, cn } from "@/lib/utils";
 
-import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { badgeVariants } from "@/components/ui/badge";
 
-import { Avatar, AvatarImage } from "./ui/avatar";
+type SongCardProps = SongCardDataType;
 
-type SongCardProps = Omit<SongCardDataType, "slug"> & {
-  href: string;
-};
-
-export async function SongCard({ href, title, artist: { artistName, musicalGenre } }: SongCardProps) {
+export async function SongCard({
+  slug: songSlug,
+  title,
+  artist: { slug: artistSlug, artistName, musicalGenre }
+}: SongCardProps) {
   const songAlbumImage = await fetch(await ApiRoutes.spotifyApiSong({ songName: title, artistName }), {
     cache: "force-cache",
     next: {
@@ -28,12 +30,21 @@ export async function SongCard({ href, title, artist: { artistName, musicalGenre
     <div className="bg-secondary hover:bg-primary-foreground relative rounded-lg px-5 py-3 shadow-sm transition-colors">
       <div className="flex h-full justify-between gap-4">
         <div className="flex flex-col gap-2">
-          <Link href={href} className="text-3xl font-medium">
-            <span className="absolute inset-0 cursor-pointer" />
+          <Link href={AppRoutes.songsPageDetail({ slug: songSlug })} className="text-3xl font-medium">
+            <span className="absolute inset-0 z-10" />
             {title}
           </Link>
-          <h3 className="break-all">{artistName}</h3>
-          {musicalGenre ? <Badge>{capitalize(musicalGenre)}</Badge> : null}
+          <Link href={AppRoutes.artistsDetailPage({ slug: artistSlug })} className="z-20 block w-fit hover:underline">
+            <h3 className="break-all">{artistName}</h3>
+          </Link>
+          {musicalGenre ? (
+            <Link
+              href={AppRoutes.musicalGenreDetailPage({ musicalGenre })}
+              className={cn(badgeVariants(), "z-20 transition-colors")}
+            >
+              {capitalize(musicalGenre)}
+            </Link>
+          ) : null}
         </div>
         <div className="grid place-content-center">
           {smallImage ? (

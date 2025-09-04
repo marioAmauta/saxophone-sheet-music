@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 
 import { getSongs, getTotalSongs } from "@/data-access/song";
 
@@ -80,7 +80,7 @@ export default async function SongsPage({ searchParams }: SongsPageProps) {
           </Suspense>
           <SongsList>
             {songs.map((song) => (
-              <SongCard key={song.slug} href={AppRoutes.songsPageDetail({ slug: song.slug })} {...song} />
+              <SongCard key={song.slug} {...song} />
             ))}
           </SongsList>
           <Suspense>
