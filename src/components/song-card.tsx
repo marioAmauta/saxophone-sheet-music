@@ -26,21 +26,21 @@ export async function SongCard({ href, title, artist: { artistName, musicalGenre
 
   return (
     <div className="bg-secondary hover:bg-primary-foreground relative rounded-lg px-5 py-3 shadow-sm transition-colors">
-      <div className="flex justify-between gap-4">
+      <div className="flex h-full justify-between gap-4">
         <div className="flex flex-col gap-2">
           <Link href={href} className="text-3xl font-medium">
             <span className="absolute inset-0 cursor-pointer" />
             {title}
           </Link>
           <h3 className="break-all">{artistName}</h3>
+          {musicalGenre ? <Badge>{capitalize(musicalGenre)}</Badge> : null}
         </div>
-        <div className="flex flex-col items-center gap-2">
+        <div className="grid place-content-center">
           {smallImage ? (
             <Avatar className="ml-auto size-20">
               <AvatarImage src={smallImage.url} />
             </Avatar>
           ) : null}
-          {musicalGenre ? <Badge>{capitalize(musicalGenre)}</Badge> : null}
         </div>
       </div>
     </div>
