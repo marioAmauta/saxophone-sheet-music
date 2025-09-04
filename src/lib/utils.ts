@@ -46,7 +46,7 @@ export function getSortingOption(sort: SortOptions) {
 
 export function getPaginationParams({ searchParams }: { searchParams: SearchParamsSync }) {
   const page = searchParams.page ? Number(searchParams.page) : 1;
-  const limit = searchParams.limit ? Number(searchParams.limit) : 9;
+  const limit = searchParams.limit ? Number(searchParams.limit) : 10;
   const start = (page - 1) * limit;
   const end = start + limit;
 
