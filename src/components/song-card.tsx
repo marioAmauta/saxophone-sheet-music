@@ -29,18 +29,18 @@ export async function SongCard({ href, title, artist: { artistName, musicalGenre
       <div className="flex justify-between gap-4">
         <div className="flex flex-col gap-2">
           <Link href={href} className="text-3xl font-medium">
-            <span className="absolute inset-0" />
+            <span className="absolute inset-0 cursor-pointer" />
             {title}
           </Link>
-          {musicalGenre ? <Badge>{capitalize(musicalGenre)}</Badge> : null}
+          <h3 className="break-all">{artistName}</h3>
         </div>
-        <div className="grid">
+        <div className="flex flex-col items-center gap-2">
           {smallImage ? (
             <Avatar className="ml-auto size-20">
               <AvatarImage src={smallImage.url} />
             </Avatar>
           ) : null}
-          <h3 className="break-all">{artistName}</h3>
+          {musicalGenre ? <Badge>{capitalize(musicalGenre)}</Badge> : null}
         </div>
       </div>
     </div>
