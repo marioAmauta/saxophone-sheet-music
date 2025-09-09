@@ -6,10 +6,10 @@ import { notFound } from "next/navigation";
 import { LikeSongButton } from "@/app/songs/like-song-button";
 
 import { isLikedSong, getSongBySlug } from "@/data-access/song";
+import { getAlbumImages } from "@/data-access/spotify";
 
 import { Link } from "@/i18n/navigation";
 
-import { ApiRoutes } from "@/lib/api-routes";
 import { AppRoutes } from "@/lib/app-routes";
 import { getUserSession } from "@/lib/session";
 import { BreadcrumbItemType } from "@/lib/types";
@@ -71,19 +71,8 @@ export async function SongDetail({ params, songSegment }: SongDetailProps) {
     }
   ];
 
-  const songAlbumImage = await fetch(
-    await ApiRoutes.spotifyApiSong({ songName: song.title, artistName: song.artist.artistName }),
-    {
-      cache: "force-cache",
-      next: {
-        revalidate: 3600 * 12
-      }
-    }
-  );
-
-  const songAlbumImageData = await songAlbumImage.json();
-
-  const bigImage = songAlbumImageData.images[0];
+  const albumImagesData = await getAlbumImages({ songName: song.title, artistName: song.artist.artistName });
+  const bigImage = albumImagesData[0];
 
   return (
     <LikeProvider like={isFavorite}>

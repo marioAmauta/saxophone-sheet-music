@@ -1,6 +1,7 @@
+import { getAlbumImages } from "@/data-access/spotify";
+
 import { Link } from "@/i18n/navigation";
 
-import { ApiRoutes } from "@/lib/api-routes";
 import { AppRoutes } from "@/lib/app-routes";
 import { SongCardDataType } from "@/lib/types";
 import { capitalize, cn } from "@/lib/utils";
@@ -15,16 +16,8 @@ export async function SongCard({
   title,
   artist: { slug: artistSlug, artistName, musicalGenre }
 }: SongCardProps) {
-  const songAlbumImage = await fetch(await ApiRoutes.spotifyApiSong({ songName: title, artistName }), {
-    cache: "force-cache",
-    next: {
-      revalidate: 3600 * 12
-    }
-  });
-
-  const artistImageData = await songAlbumImage.json();
-
-  const smallImage = artistImageData.images[2];
+  const albumImagesData = await getAlbumImages({ songName: title, artistName });
+  const smallImage = albumImagesData[2];
 
   return (
     <div className="bg-secondary hover:bg-primary-foreground relative rounded-lg px-5 py-3 shadow-sm transition-colors">

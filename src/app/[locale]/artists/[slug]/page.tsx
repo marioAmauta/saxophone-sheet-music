@@ -6,10 +6,10 @@ import { Suspense } from "react";
 
 import { getArtistBySlug } from "@/data-access/artist";
 import { getArtistSongsById, getTotalArtistSongsById } from "@/data-access/song";
+import { getArtistImages } from "@/data-access/spotify";
 
 import { Link } from "@/i18n/navigation";
 
-import { ApiRoutes } from "@/lib/api-routes";
 import { AppRoutes } from "@/lib/app-routes";
 import { getUserSession } from "@/lib/session";
 import { BreadcrumbItemType, SortOptions } from "@/lib/types";
@@ -86,16 +86,8 @@ export default async function ArtistDetailPage({ params, searchParams }: ArtistD
     }
   ];
 
-  const artistImage = await fetch(await ApiRoutes.spotifyApiArtist({ artistName: foundArtist.artistName }), {
-    cache: "force-cache",
-    next: {
-      revalidate: 3600 * 12
-    }
-  });
-
-  const artistImageData = await artistImage.json();
-
-  const bigImage = artistImageData.images[0];
+  const artistImagesData = await getArtistImages({ artistName: foundArtist.artistName });
+  const bigImage = artistImagesData?.[0];
 
   return (
     <PageContainer>
