@@ -42,7 +42,7 @@ type EditSongFormProps = {
   }>;
 };
 
-export function EditSongForm({ song }: EditSongFormProps) {
+export function EditSongForm({ song }: Readonly<EditSongFormProps>) {
   const t = useTranslations("EditSongForm");
   const tInstruments = useTranslations("EditSongForm.instrumentsSection");
 
@@ -71,19 +71,19 @@ export function EditSongForm({ song }: EditSongFormProps) {
       sheets: {
         sopranoSax: {
           id: sopranoSaxSheet?.id || "",
-          checkbox: sopranoSaxSheet?.url ? true : false,
+          checkbox: !!sopranoSaxSheet?.url,
           sheetUrl: sopranoSaxSheet?.url || "",
           sheetKey: sopranoSaxSheet?.key || ""
         },
         altoSax: {
           id: altoSaxSheet?.id || "",
-          checkbox: altoSaxSheet?.url ? true : false,
+          checkbox: !!altoSaxSheet?.url,
           sheetUrl: altoSaxSheet?.url || "",
           sheetKey: altoSaxSheet?.key || ""
         },
         tenorSax: {
           id: tenorSaxSheet?.id || "",
-          checkbox: tenorSaxSheet?.url ? true : false,
+          checkbox: !!tenorSaxSheet?.url,
           sheetUrl: tenorSaxSheet?.url || "",
           sheetKey: tenorSaxSheet?.key || ""
         }

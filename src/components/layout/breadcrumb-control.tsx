@@ -15,7 +15,7 @@ type BreadcrumbControlProps = {
   breadcrumbItems: BreadcrumbItemType[];
 };
 
-export function BreadcrumbControl({ breadcrumbItems }: BreadcrumbControlProps) {
+export function BreadcrumbControl({ breadcrumbItems }: Readonly<BreadcrumbControlProps>) {
   return (
     <Breadcrumb>
       <BreadcrumbList className="justify-center">

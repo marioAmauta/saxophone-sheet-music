@@ -25,7 +25,7 @@ type FavoriteSongsPageProps = {
   searchParams: SearchParams;
 };
 
-export default async function FavoriteSongsPage({ searchParams }: FavoriteSongsPageProps) {
+export default async function FavoriteSongsPage({ searchParams }: Readonly<FavoriteSongsPageProps>) {
   const { user } = await getUserSession();
 
   if (!user) {

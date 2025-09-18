@@ -18,7 +18,7 @@ type SearchResultsProps = {
   searchParams: SearchParamsSync;
 };
 
-export async function SearchResults({ searchParams }: SearchResultsProps) {
+export async function SearchResults({ searchParams }: Readonly<SearchResultsProps>) {
   const t = await getTranslations("SearchResults");
   const tSorting = await getTranslations("sorting");
 

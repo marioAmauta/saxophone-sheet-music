@@ -22,7 +22,7 @@ type SongsPageProps = {
   searchParams: SearchParams;
 };
 
-export default async function SongsPage({ searchParams }: SongsPageProps) {
+export default async function SongsPage({ searchParams }: Readonly<SongsPageProps>) {
   const t = await getTranslations("SongsPage");
   const tSorting = await getTranslations("sorting");
 

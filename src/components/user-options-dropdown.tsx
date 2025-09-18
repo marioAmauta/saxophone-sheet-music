@@ -26,7 +26,7 @@ import {
 
 type UserOptionsDropdownProps = { user: NavbarProps["user"] };
 
-export function UserOptionsDropdown({ user }: UserOptionsDropdownProps) {
+export function UserOptionsDropdown({ user }: Readonly<UserOptionsDropdownProps>) {
   const t = useTranslations("UserOptionsDropdown");
 
   const router = useRouter();
@@ -68,11 +68,9 @@ export function UserOptionsDropdown({ user }: UserOptionsDropdownProps) {
         <DropdownMenuLabel>{t("myAccountLabel")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {user ? (
-          <>
-            <DropdownMenuItem onSelect={eventPreventDefault} asChild>
-              <LogoutButton handleSignOut={handleSignOut} />
-            </DropdownMenuItem>
-          </>
+          <DropdownMenuItem onSelect={eventPreventDefault} asChild>
+            <LogoutButton handleSignOut={handleSignOut} />
+          </DropdownMenuItem>
         ) : (
           <DropdownMenuItem asChild>
             <Link href={AppRoutes.loginPage} onClick={onLoginClick} className="cursor-pointer">

@@ -82,13 +82,14 @@ export function RecentSearches() {
       {searches.length > 0 ? (
         <ul className="space-y-3">
           {searches.map((search, index) => (
-            <li
-              key={`${search}-${index}`}
-              onClick={() => onSearchItemClick(search)}
-              className="flex w-fit cursor-pointer items-center gap-2 underline"
-            >
-              <span className="flex-1 break-all">{search}</span>
-              <ExternalLink className="size-4" />
+            <li key={`${search}-${index}`}>
+              <button
+                onClick={() => onSearchItemClick(search)}
+                className="flex w-fit cursor-pointer items-center gap-2 underline"
+              >
+                <span className="flex-1 break-all">{search}</span>
+                <ExternalLink className="size-4" />
+              </button>
             </li>
           ))}
         </ul>

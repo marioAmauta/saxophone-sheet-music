@@ -16,7 +16,7 @@ type EditArtistPageProps = {
   params: Params<{ slug: string }>;
 };
 
-export default async function EditArtistPage({ params }: EditArtistPageProps) {
+export default async function EditArtistPage({ params }: Readonly<EditArtistPageProps>) {
   const { user, isAdmin } = await getUserSession();
 
   const locale = await getLocale();

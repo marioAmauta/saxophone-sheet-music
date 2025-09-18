@@ -6,9 +6,9 @@ import { PageContainer } from "@/components/layout/sections";
 import { TypographyH1, TypographyP } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 
-type ErrorProps = { error: Error; reset(): void };
+type ErrorPageProps = { error: Error; reset(): void };
 
-export default function Error({ error, reset }: ErrorProps) {
+export default function ErrorPage({ error, reset }: Readonly<ErrorPageProps>) {
   useEffect(() => {
     console.error(error);
   }, [error]);

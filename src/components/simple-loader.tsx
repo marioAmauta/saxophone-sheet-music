@@ -6,7 +6,7 @@ type SimpleLoaderProps = {
   className?: string;
 };
 
-export function SimpleLoader({ className }: SimpleLoaderProps) {
+export function SimpleLoader({ className }: Readonly<SimpleLoaderProps>) {
   return (
     <div className="flex justify-center">
       <Loader2 className={cn("size-5 animate-spin", className)} />

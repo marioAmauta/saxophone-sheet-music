@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "@/components/ui/button";
 
-export function DeleteSheetButton({ id, onSuccess }: DeleteButtonProps) {
+export function DeleteSheetButton({ id, onSuccess }: Readonly<DeleteButtonProps>) {
   const t = useTranslations("DeleteSheetButton");
 
   const [isPending, startTransition] = useTransition();

@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 import { Link, usePathname } from "@/i18n/navigation";
 
 import { AppRoutes } from "@/lib/app-routes";
-import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { LinkType, NavbarProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +13,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 type DesktopNavbarProps = { isAdmin: NavbarProps["isAdmin"] };
 
-export function DesktopNavbar({ isAdmin }: DesktopNavbarProps) {
+export function DesktopNavbar({ isAdmin }: Readonly<DesktopNavbarProps>) {
   const t = useTranslations("navbar");
 
   const links: LinkType[] = [
@@ -24,17 +23,14 @@ export function DesktopNavbar({ isAdmin }: DesktopNavbarProps) {
     },
     {
       href: AppRoutes.artistsPage,
-      testId: DATA_CY_ELEMENTS.navbar.artistsLink,
       label: t("artists")
     },
     {
       href: AppRoutes.songsPage,
-      testId: DATA_CY_ELEMENTS.navbar.songsLink,
       label: t("songs")
     },
     {
       href: AppRoutes.favoriteSongsPage,
-      testId: DATA_CY_ELEMENTS.navbar.favoriteSongsLink,
       label: t("favoriteSongs")
     },
     {
@@ -43,7 +39,6 @@ export function DesktopNavbar({ isAdmin }: DesktopNavbarProps) {
     },
     {
       href: AppRoutes.createSongPage,
-      testId: DATA_CY_ELEMENTS.navbar.createSongLink,
       label: t("createSong"),
       isAdminLink: true
     }

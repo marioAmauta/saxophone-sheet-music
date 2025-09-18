@@ -12,7 +12,7 @@ type LoginLinkProps = {
   onClick?: () => void;
 };
 
-export function LoginLink({ className, onClick }: LoginLinkProps) {
+export function LoginLink({ className, onClick }: Readonly<LoginLinkProps>) {
   const t = useTranslations("LoginLink");
 
   return (

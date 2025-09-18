@@ -51,11 +51,14 @@ export const auth = betterAuth({
         }
       });
 
+      const subjectContent = t(`${locale}.subject`);
+      const textContent = t(`${locale}.text`);
+
       const message = {
         to: user.email,
         from: process.env.SENDGRID_FROM_EMAIL!,
-        subject: t(`${locale}.subject`),
-        text: `${t(`${locale}.text`)}: ${url}`
+        subject: subjectContent,
+        text: `${textContent}: ${url}`
       };
 
       await sgMail.send(message);

@@ -21,7 +21,7 @@ type LogOutButtonProps = {
   handleSignOut: () => void;
 };
 
-export function LogoutButton({ handleSignOut }: LogOutButtonProps) {
+export function LogoutButton({ handleSignOut }: Readonly<LogOutButtonProps>) {
   const t = useTranslations("LogOutButton");
 
   return (

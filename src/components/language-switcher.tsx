@@ -19,7 +19,9 @@ export function LanguageSwitcher() {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
 
-      const url = `${pathname}${params.size ? `?${params}` : ""}`;
+      const validParams = params.size ? `?${params}` : "";
+
+      const url = `${pathname}${validParams}`;
 
       router.replace(url, { locale: value, scroll: false });
     });

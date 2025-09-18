@@ -32,7 +32,7 @@ type EditArtistFormProps = {
   }>;
 };
 
-export function EditArtistForm({ artist }: EditArtistFormProps) {
+export function EditArtistForm({ artist }: Readonly<EditArtistFormProps>) {
   const t = useTranslations("EditArtistForm");
 
   const router = useRouter();

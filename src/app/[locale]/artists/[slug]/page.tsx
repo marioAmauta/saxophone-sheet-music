@@ -35,7 +35,7 @@ type ArtistDetailPageProps = {
   searchParams: SearchParams;
 };
 
-export default async function ArtistDetailPage({ params, searchParams }: ArtistDetailPageProps) {
+export default async function ArtistDetailPage({ params, searchParams }: Readonly<ArtistDetailPageProps>) {
   const awaitedParams = await params;
 
   const foundArtist = await getArtistBySlug({ slug: awaitedParams.slug });

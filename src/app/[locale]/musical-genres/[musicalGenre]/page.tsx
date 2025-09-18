@@ -23,7 +23,7 @@ type MusicalGenreDetailPageProps = {
   searchParams: SearchParams;
 };
 
-export default async function MusicalGenreDetailPage({ params, searchParams }: MusicalGenreDetailPageProps) {
+export default async function MusicalGenreDetailPage({ params, searchParams }: Readonly<MusicalGenreDetailPageProps>) {
   const t = await getTranslations("MusicalGenreDetailPage");
   const tSorting = await getTranslations("sorting");
 

@@ -9,7 +9,7 @@ interface LoadingButtonProps extends ComponentProps<typeof Button> {
   loading: boolean;
 }
 
-export function LoadingButton({ loading, disabled, className, ...props }: LoadingButtonProps) {
+export function LoadingButton({ loading, disabled, className, ...props }: Readonly<LoadingButtonProps>) {
   return (
     <Button disabled={disabled || loading} className={cn("flex items-center gap-2", className)} {...props}>
       {loading ? <Loader2 className="size-5 animate-spin" /> : null}

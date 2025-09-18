@@ -16,7 +16,7 @@ type EditSongPageProps = {
   params: Params<{ slug: string }>;
 };
 
-export default async function EditSongPage({ params }: EditSongPageProps) {
+export default async function EditSongPage({ params }: Readonly<EditSongPageProps>) {
   const { slug } = await params;
 
   const { user, isAdmin } = await getUserSession();

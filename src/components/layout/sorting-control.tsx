@@ -20,7 +20,13 @@ type SortingControlProps = {
   sortingOptions: SortingOptionsArray;
 };
 
-export function SortingControl({ quantityLabel, start, end, totalItems, sortingOptions }: SortingControlProps) {
+export function SortingControl({
+  quantityLabel,
+  start,
+  end,
+  totalItems,
+  sortingOptions
+}: Readonly<SortingControlProps>) {
   const t = useTranslations("sorting");
 
   const router = useRouter();

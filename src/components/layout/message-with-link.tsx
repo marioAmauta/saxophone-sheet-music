@@ -9,7 +9,7 @@ type MessageWithLinkProps = {
   linkLabel: string;
 };
 
-export function MessageWithLink({ messageText, href, dataCyLink, linkLabel }: MessageWithLinkProps) {
+export function MessageWithLink({ messageText, href, dataCyLink, linkLabel }: Readonly<MessageWithLinkProps>) {
   return (
     <div className="text-center">
       <p>{messageText}</p>

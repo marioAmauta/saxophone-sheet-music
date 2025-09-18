@@ -32,7 +32,7 @@ type SongDetailProps = {
   songSegment: SongSegment;
 };
 
-export async function SongDetail({ params, songSegment }: SongDetailProps) {
+export async function SongDetail({ params, songSegment }: Readonly<SongDetailProps>) {
   const { slug } = await params;
 
   const song = await getSongBySlug({ slug });

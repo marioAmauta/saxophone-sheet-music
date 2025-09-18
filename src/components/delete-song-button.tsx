@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "@/components/ui/button";
 
-export function DeleteSongButton({ id }: DeleteButtonProps) {
+export function DeleteSongButton({ id }: Readonly<DeleteButtonProps>) {
   const t = useTranslations("DeleteSongButton");
 
   const router = useRouter();

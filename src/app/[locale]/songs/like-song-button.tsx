@@ -21,7 +21,7 @@ type LikeSongButtonProps = {
   className?: string;
 };
 
-export function LikeSongButton({ songId, className }: LikeSongButtonProps) {
+export function LikeSongButton({ songId, className }: Readonly<LikeSongButtonProps>) {
   const t = useTranslations("LikeSongButton");
 
   const id = useId();

@@ -24,7 +24,7 @@ import { Separator } from "@/components/ui/separator";
 
 type MobileNavbarProps = { isAdmin: NavbarProps["isAdmin"] };
 
-export function MobileNavbar({ isAdmin }: MobileNavbarProps) {
+export function MobileNavbar({ isAdmin }: Readonly<MobileNavbarProps>) {
   const t = useTranslations("MobileNavbar");
   const tLinks = useTranslations("navbar");
 

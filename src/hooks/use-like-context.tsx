@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, PropsWithChildren, useContext, useOptimistic } from "react";
+import { createContext, PropsWithChildren, useContext, useMemo, useOptimistic } from "react";
 
 type LikeContextType = { isLiked: boolean; setIsLiked: (action: unknown) => void } | null;
 
@@ -11,11 +11,12 @@ type LikeProviderProps = PropsWithChildren<{ like: boolean }>;
 export function LikeProvider({ like, children }: LikeProviderProps) {
   const [isOptimisticLiked, setIsOptimisticLiked] = useOptimistic(like, (_, newState) => Boolean(newState));
 
-  return (
-    <LikeContext.Provider value={{ isLiked: isOptimisticLiked, setIsLiked: setIsOptimisticLiked }}>
-      {children}
-    </LikeContext.Provider>
+  const valueObject = useMemo(
+    () => ({ isLiked: isOptimisticLiked, setIsLiked: setIsOptimisticLiked }),
+    [isOptimisticLiked, setIsOptimisticLiked]
   );
+
+  return <LikeContext.Provider value={valueObject}>{children}</LikeContext.Provider>;
 }
 
 export function useLikeContext() {

@@ -18,7 +18,7 @@ type SearchPageProps = {
   searchParams: SearchParams;
 };
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
+export default async function SearchPage({ searchParams }: Readonly<SearchPageProps>) {
   const t = await getTranslations("SearchPage");
 
   const awaitedSearchParams = await searchParams;

@@ -12,7 +12,7 @@ import { badgeVariants } from "@/components/ui/badge";
 
 type ArtistCardProps = Pick<Artist, "slug" | "artistName" | "musicalGenre">;
 
-export async function ArtistCard({ slug, artistName, musicalGenre }: ArtistCardProps) {
+export async function ArtistCard({ slug, artistName, musicalGenre }: Readonly<ArtistCardProps>) {
   const artistImagesData = await getArtistImages({ artistName });
   const smallImage = artistImagesData?.[2];
 

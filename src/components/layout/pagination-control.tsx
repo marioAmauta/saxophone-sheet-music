@@ -25,7 +25,7 @@ export type PaginationControlProps = {
   totalItems: number;
 };
 
-export function PaginationControl({ start, end, page, limit, totalItems }: PaginationControlProps) {
+export function PaginationControl({ start, end, page, limit, totalItems }: Readonly<PaginationControlProps>) {
   const t = useTranslations("pagination");
 
   const searchKey = "page";

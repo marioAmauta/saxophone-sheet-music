@@ -47,5 +47,6 @@ messages/*.d.json.ts
 /blob-report/
 /playwright/.cache/
 
-# next-intl
-messages/*.d.json.ts
+# sonarqube
+.scannerwork/*
+.sonarlint/*

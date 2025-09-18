@@ -15,7 +15,7 @@ export async function SongCard({
   slug: songSlug,
   title,
   artist: { slug: artistSlug, artistName, musicalGenre }
-}: SongCardProps) {
+}: Readonly<SongCardProps>) {
   const albumImagesData = await getAlbumImages({ songName: title, artistName });
   const smallImage = albumImagesData[2];
 
