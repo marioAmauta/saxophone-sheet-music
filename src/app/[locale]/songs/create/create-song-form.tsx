@@ -9,7 +9,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useDebouncedCallback } from "use-debounce";
 
-import { createSongAction, getArtistsByNameAction } from "@/app/songs/actions";
+import { createSongAction } from "@/app/songs/actions";
+
+import { getArtistsByName } from "@/data-access/artist";
 
 import { useRouter } from "@/i18n/navigation";
 
@@ -87,7 +89,7 @@ export function CreateSongForm() {
 
   const debouncedArtistSearch = useDebouncedCallback((value) => {
     startTransition(async () => {
-      const foundArtistsInSelect = await getArtistsByNameAction({ artistName: value });
+      const foundArtistsInSelect = await getArtistsByName({ artistName: value });
 
       if (foundArtistsInSelect) {
         setFoundArtists(foundArtistsInSelect);

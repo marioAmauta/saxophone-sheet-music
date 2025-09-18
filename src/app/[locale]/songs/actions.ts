@@ -6,8 +6,6 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { getArtistsByName } from "@/data-access/artist";
-
 import { redirect } from "@/i18n/navigation";
 
 import { AppRoutes } from "@/lib/app-routes";
@@ -337,10 +335,6 @@ export async function deleteSheet({ sheetId }: { sheetId: string }) {
   return {
     message: serverSuccessMessages("sheetDeleted")
   };
-}
-
-export async function getArtistsByNameAction({ artistName }: { artistName: string }) {
-  return await getArtistsByName({ artistName });
 }
 
 export async function likeSong({ songId }: { songId: string }) {
