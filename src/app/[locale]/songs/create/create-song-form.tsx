@@ -11,10 +11,9 @@ import { useDebouncedCallback } from "use-debounce";
 
 import { createSongAction } from "@/app/songs/actions";
 
-import { getArtistsByName } from "@/data-access/artist";
-
 import { useRouter } from "@/i18n/navigation";
 
+import { ApiRoutes } from "@/lib/api-routes";
 import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { MusicalGenres } from "@/lib/enums";
 import { UploadButton } from "@/lib/uploadthing";
@@ -89,7 +88,18 @@ export function CreateSongForm() {
 
   const debouncedArtistSearch = useDebouncedCallback((value) => {
     startTransition(async () => {
-      const foundArtistsInSelect = await getArtistsByName({ artistName: value });
+      const response = await fetch(ApiRoutes.searchArtistQuery({ artistName: value }), {
+        cache: "force-cache",
+        next: {
+          revalidate: 60 * 60 * 3 // 3 hours
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch artists");
+      }
+
+      const foundArtistsInSelect: Artist[] = await response.json();
 
       if (foundArtistsInSelect) {
         setFoundArtists(foundArtistsInSelect);
