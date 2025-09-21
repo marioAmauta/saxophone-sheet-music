@@ -63,10 +63,10 @@ export function EditSongForm({ song }: Readonly<EditSongFormProps>) {
       youTubeLink: song.youTubeLink,
       originalSongLink: song.originalSongLink,
       audioFile: {
-        id: audioFile.id,
-        fileName: audioFile.fileName,
-        fileKey: audioFile.key,
-        fileUrl: audioFile.url
+        id: audioFile?.id || "",
+        fileName: audioFile?.fileName || "",
+        fileKey: audioFile?.key || "",
+        fileUrl: audioFile?.url || ""
       },
       sheets: {
         sopranoSax: {
