@@ -215,15 +215,17 @@ export async function editSongAction(data: unknown): Promise<ActionReturnType | 
                   }
                 }
               }
-            : {
-                audioFiles: {
-                  create: {
-                    fileName: songData.audioFile.fileName,
-                    url: songData.audioFile.fileUrl,
-                    key: songData.audioFile.fileKey
+            : songData.audioFile.fileUrl
+              ? {
+                  audioFiles: {
+                    create: {
+                      fileName: songData.audioFile.fileName,
+                      url: songData.audioFile.fileUrl,
+                      key: songData.audioFile.fileKey
+                    }
                   }
                 }
-              })
+              : {})
         }
       });
 

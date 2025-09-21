@@ -150,19 +150,25 @@ export async function SongDetail({ params, songSegment }: Readonly<SongDetailPro
             <Video className="size-4" />
             <span>{t("youTubeLink")}</span>
           </a>
-          {song.audioFiles.map((audioFile) => (
-            <a
-              key={audioFile.id}
-              href={audioFile.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className={buttonVariants({ variant: "outline", className: "flex gap-2" })}
-            >
-              <Download className="size-4" />
-              <span>{t("audioTrack")}</span>
-            </a>
-          ))}
+          {song.audioFiles.map((audioFile) => {
+            if (!audioFile.url) {
+              return null;
+            }
+
+            return (
+              <a
+                key={audioFile.id}
+                href={audioFile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className={buttonVariants({ variant: "outline", className: "flex gap-2" })}
+              >
+                <Download className="size-4" />
+                <span>{t("audioTrack")}</span>
+              </a>
+            );
+          })}
           {song.sheets.map((sheet) => (
             <a
               key={sheet.id}
