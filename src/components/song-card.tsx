@@ -17,7 +17,7 @@ export async function SongCard({
   artist: { slug: artistSlug, artistName, musicalGenre }
 }: Readonly<SongCardProps>) {
   const albumImagesData = await getAlbumImages({ songName: title, artistName });
-  const smallImage = albumImagesData[2];
+  const smallImage = albumImagesData?.[2];
 
   return (
     <div className="bg-secondary hover:bg-primary-foreground relative rounded-lg px-5 py-3 shadow-sm transition-colors">
