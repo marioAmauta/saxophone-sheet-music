@@ -10,7 +10,7 @@ test.describe("Auth", () => {
     test("user can sign up and be automatically logged in correctly", async ({ page }) => {
       await deleteUserFromDb();
       await page.goto(AppRoutes.homePage);
-      const loginButton = page.getByRole("link", { name: en.HomePage.heroSection.loginButton });
+      const loginButton = page.getByRole("link", { name: en.LoginButton.label });
       await loginButton.click();
       await page.getByRole("link", { name: en.LoginPage.registerLink }).click();
       await page.getByRole("textbox", { name: en.RegisterForm.name.label }).fill(newUser.name);
@@ -26,7 +26,7 @@ test.describe("Auth", () => {
 
     test("user cannot sign up with invalid data", async ({ page }) => {
       await page.goto(AppRoutes.homePage);
-      const loginButton = page.getByRole("link", { name: en.HomePage.heroSection.loginButton });
+      const loginButton = page.getByRole("link", { name: en.LoginButton.label });
       await loginButton.click();
       await page.getByRole("link", { name: en.LoginPage.registerLink }).click();
       const signUpButton = page.getByRole("button", { name: en.RegisterForm.registerSubmit });
@@ -53,7 +53,7 @@ test.describe("Auth", () => {
   test.describe("Login", () => {
     test("user can login and log out after signing up", async ({ page }) => {
       await page.goto(AppRoutes.homePage);
-      const loginButton = page.getByRole("link", { name: en.HomePage.heroSection.loginButton });
+      const loginButton = page.getByRole("link", { name: en.LoginButton.label });
       await loginButton.click();
       await page.getByRole("textbox", { name: en.LoginForm.email.label }).fill(newUser.email);
       await page.getByRole("textbox", { name: en.LoginForm.password.label }).fill(newUser.password);
@@ -68,7 +68,7 @@ test.describe("Auth", () => {
 
     test("user cannot login with invalid credentials", async ({ page }) => {
       await page.goto(AppRoutes.homePage);
-      const loginButton = page.getByRole("link", { name: en.HomePage.heroSection.loginButton });
+      const loginButton = page.getByRole("link", { name: en.LoginButton.label });
       await loginButton.click();
       const loginSubmitButton = page.getByRole("button", { name: en.LoginForm.loginSubmit, exact: true });
       const emailInput = page.getByRole("textbox", { name: en.LoginForm.email.label });

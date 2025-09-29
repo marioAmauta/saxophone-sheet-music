@@ -47,6 +47,14 @@ test.describe("Navigation", () => {
         await expect(page.getByRole("heading", { name: headingName })).toBeVisible();
       });
     }
+
+    test("user cannot navigate to favorite page if has not an account and must be redirected to account required page", async ({
+      page
+    }) => {
+      await page.getByRole("button", { name: en.MobileNavbar.menuLabel }).click();
+      await page.getByRole("link", { name: en.navbar.favoriteSongs }).click();
+      await expect(page.getByRole("heading", { name: en.AccountRequiredPage.title })).toBeVisible();
+    });
   });
 
   test.describe("Desktop Navigation", () => {
@@ -63,5 +71,12 @@ test.describe("Navigation", () => {
         await expect(page.getByRole("heading", { name: headingName })).toBeVisible();
       });
     }
+
+    test("user cannot navigate to favorite page if has not an account and must be redirected to account required page", async ({
+      page
+    }) => {
+      await page.getByRole("link", { name: en.navbar.favoriteSongs }).click();
+      await expect(page.getByRole("heading", { name: en.AccountRequiredPage.title })).toBeVisible();
+    });
   });
 });

@@ -12,8 +12,7 @@
     "heroSection": {
       "title": "Partituras para Saxofón",
       "description": "Accede, descarga y contribuye a nuestra creciente colección de partituras para saxofón.",
-      "browseLibraryButton": "Explorar Biblioteca",
-      "loginButton": "Iniciar sesión"
+      "browseLibraryButton": "Explorar Biblioteca"
     },
     "featuresSection": {
       "title": "Todo lo que Necesitas",
@@ -54,8 +53,11 @@
       "buttonLabel": "Explorar Biblioteca"
     }
   },
-  "LoginLink": {
+  "LoginButton": {
     "label": "Iniciar sesión"
+  },
+  "SignUpButton": {
+    "label": "Crear cuenta"
   },
   "RegisterPage": {
     "title": "Crear cuenta",
@@ -141,8 +143,7 @@
   },
   "AccountRequiredPage": {
     "title": "Cuenta Requerida",
-    "description": "Necesitas una cuenta para guardar canciones en tu lista de favoritos.",
-    "buttonLabel": "Iniciar sesión"
+    "description": "Necesitas una cuenta para guardar canciones en tu lista de favoritos."
   },
   "SearchPage": {
     "title": "Buscar"

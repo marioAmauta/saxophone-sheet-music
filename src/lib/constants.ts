@@ -19,8 +19,6 @@ export const DATA_CY_ELEMENTS = Object.freeze({
     artistsLink: "artists-link",
     favoriteSongsLink: "favorite-songs-link"
   },
-  loginLink: "login-link",
-  registerLink: "register-link",
   loginForm: {
     email: "email",
     password: "password",

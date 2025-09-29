@@ -13,6 +13,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { LoginButton } from "./login-button";
+import { SignUpButton } from "./signup-button";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -51,6 +52,7 @@ export default function HomePage() {
               {t("heroSection.browseLibraryButton")}
             </Link>
             <ContributeButton />
+            <SignUpButton />
             <LoginButton />
           </div>
         </SectionContainer>

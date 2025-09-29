@@ -7,8 +7,8 @@ import { getUserSession } from "@/lib/session";
 
 import { buttonVariants } from "@/components/ui/button";
 
-export async function LoginButton() {
-  const t = await getTranslations("LoginButton");
+export async function SignUpButton() {
+  const t = await getTranslations("SignUpButton");
 
   const { user } = await getUserSession();
 
@@ -17,7 +17,7 @@ export async function LoginButton() {
   }
 
   return (
-    <Link href={AppRoutes.loginPage} className={buttonVariants()}>
+    <Link href={AppRoutes.registerPage} className={buttonVariants()}>
       {t("label")}
     </Link>
   );

@@ -12,8 +12,7 @@
     "heroSection": {
       "title": "Saxophone Sheet Music",
       "description": "Access, download, and contribute to our growing collection of saxophone sheet music.",
-      "browseLibraryButton": "Browse Library",
-      "loginButton": "Login"
+      "browseLibraryButton": "Browse Library"
     },
     "featuresSection": {
       "title": "Everything You Need",
@@ -54,8 +53,11 @@
       "buttonLabel": "Browse Library"
     }
   },
-  "LoginLink": {
+  "LoginButton": {
     "label": "Login"
+  },
+  "SignUpButton": {
+    "label": "Create account"
   },
   "RegisterPage": {
     "title": "Create account",
@@ -141,8 +143,7 @@
   },
   "AccountRequiredPage": {
     "title": "Account Required",
-    "description": "You need an account to save songs to your favorites list.",
-    "buttonLabel": "Login"
+    "description": "You need an account to save songs to your favorites list."
   },
   "SearchPage": {
     "title": "Search"

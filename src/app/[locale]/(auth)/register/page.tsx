@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 
 import { AppRoutes } from "@/lib/app-routes";
-import { DATA_CY_ELEMENTS } from "@/lib/constants";
 
 import { MessageWithLink } from "@/components/layout/message-with-link";
 import { PageContainer } from "@/components/layout/sections";
@@ -16,12 +15,7 @@ export default function RegisterPage() {
     <PageContainer>
       <TypographyH1>{t("title")}</TypographyH1>
       <RegisterForm />
-      <MessageWithLink
-        href={AppRoutes.loginPage}
-        dataCyLink={DATA_CY_ELEMENTS.loginLink}
-        linkLabel={t("loginLink")}
-        messageText={t("alreadyHaveAccount")}
-      />
+      <MessageWithLink href={AppRoutes.loginPage} linkLabel={t("loginLink")} messageText={t("alreadyHaveAccount")} />
     </PageContainer>
   );
 }
