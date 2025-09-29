@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 
 import { AppRoutes } from "@/lib/app-routes";
-import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { LinkType, NavbarProps } from "@/lib/types";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -33,17 +32,14 @@ export function MobileNavbar({ isAdmin }: Readonly<MobileNavbarProps>) {
   const links: LinkType[] = [
     {
       href: AppRoutes.artistsPage,
-      testId: DATA_CY_ELEMENTS.navbar.artistsLink,
       label: tLinks("artists")
     },
     {
       href: AppRoutes.songsPage,
-      testId: DATA_CY_ELEMENTS.navbar.songsLink,
       label: tLinks("songs")
     },
     {
       href: AppRoutes.favoriteSongsPage,
-      testId: DATA_CY_ELEMENTS.navbar.favoriteSongsLink,
       label: tLinks("favoriteSongs")
     },
     {
@@ -52,7 +48,6 @@ export function MobileNavbar({ isAdmin }: Readonly<MobileNavbarProps>) {
     },
     {
       href: AppRoutes.createSongPage,
-      testId: DATA_CY_ELEMENTS.navbar.createSongLink,
       label: tLinks("createSong"),
       isAdminLink: true
     }
@@ -72,27 +67,24 @@ export function MobileNavbar({ isAdmin }: Readonly<MobileNavbarProps>) {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger
-        className="flex cursor-pointer flex-col items-center"
-        data-testid={DATA_CY_ELEMENTS.navbar.mobileMenuButton}
-      >
+      <DrawerTrigger className="flex cursor-pointer flex-col items-center">
         <Menu className="size-6" />
         <span>{t("menuLabel")}</span>
       </DrawerTrigger>
-      <DrawerContent data-testid={DATA_CY_ELEMENTS.navbar.mobileMenu}>
+      <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>{t("menuLabel")}</DrawerTitle>
           <DrawerDescription>{t("menuDescription")}</DrawerDescription>
         </DrawerHeader>
         <div className="mx-auto grid w-[80%] max-w-96 gap-6 px-4 pt-8 pb-16">
-          {links.map(({ href, testId, label, isAdminLink }) => {
+          {links.map(({ href, label, isAdminLink }) => {
             if (isAdminLink && !isAdmin) {
               return null;
             }
 
             return (
               <DrawerClose key={`${href}-mobile-navbar`} asChild>
-                <Link href={href} data-testid={testId} className={buttonVariants()}>
+                <Link href={href} className={buttonVariants()}>
                   {label}
                 </Link>
               </DrawerClose>
