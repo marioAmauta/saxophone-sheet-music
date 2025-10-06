@@ -13,7 +13,6 @@ export const DATA_CY_ELEMENTS = Object.freeze({
     logoutTriggerButton: "logout-trigger-button",
     logoutButton: "logout-button",
     searchButton: "search-button",
-    searchInput: "search-input",
     createSongLink: "create-song-link",
     songsLink: "songs-link",
     artistsLink: "artists-link",
@@ -29,22 +28,6 @@ export const DATA_CY_ELEMENTS = Object.freeze({
     email: "email",
     password: "password",
     confirmPassword: "confirmPassword",
-    submitButton: "submit"
-  },
-  createSongForm: {
-    artistName: "artistName",
-    artistNameSelect: "artistNameSelect",
-    musicalGenre: "musicalGenre",
-    biographyLink: "biographyLink",
-    title: "title",
-    audioFileLink: "audioFileLink",
-    youTubeLink: "youTubeLink",
-    originalSongLink: "originalSongLink",
-    saxSheets: {
-      saxCheckbox: "altoSaxCheckbox",
-      saxSheetLink: "altoSaxSheetLink"
-    },
-    errorMessage: "error-message",
     submitButton: "submit"
   },
   songCard: {

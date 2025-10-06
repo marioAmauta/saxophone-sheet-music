@@ -50,3 +50,5 @@ messages/*.d.json.ts
 # sonarqube
 .scannerwork/*
 .sonarlint/*
+
+playwright/.auth

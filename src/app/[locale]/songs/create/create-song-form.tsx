@@ -14,7 +14,6 @@ import { createSongAction } from "@/app/songs/actions";
 import { useRouter } from "@/i18n/navigation";
 
 import { ApiRoutes } from "@/lib/api-routes";
-import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { MusicalGenres } from "@/lib/enums";
 import { UploadButton } from "@/lib/uploadthing";
 import { createSongSchema, CreateSongSchemaType } from "@/lib/zod-schemas";
@@ -151,7 +150,6 @@ export function CreateSongForm() {
               <FormControl>
                 <Input
                   placeholder={tArtist("artistName.placeholder")}
-                  data-testid={DATA_CY_ELEMENTS.createSongForm.artistName}
                   {...field}
                   onChange={(event) => {
                     field.onChange(event);
@@ -200,11 +198,7 @@ export function CreateSongForm() {
                 <FormItem>
                   <FormLabel>{tArtist("biographyLink.label")}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={tArtist("biographyLink.placeholder")}
-                      data-testid={DATA_CY_ELEMENTS.createSongForm.biographyLink}
-                      {...field}
-                    />
+                    <Input placeholder={tArtist("biographyLink.placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -218,10 +212,7 @@ export function CreateSongForm() {
                   <FormLabel>{tArtist("musicalGenre.label")}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger
-                        className="flex w-full justify-between"
-                        data-testid={DATA_CY_ELEMENTS.createSongForm.musicalGenre}
-                      >
+                      <SelectTrigger className="flex w-full justify-between">
                         <SelectValue placeholder={tArtist("musicalGenre.selectLabel")} />
                       </SelectTrigger>
                     </FormControl>
@@ -245,11 +236,7 @@ export function CreateSongForm() {
             <FormItem>
               <FormLabel>{tSong("title.label")}</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={tSong("title.placeholder")}
-                  data-testid={DATA_CY_ELEMENTS.createSongForm.title}
-                  {...field}
-                />
+                <Input placeholder={tSong("title.placeholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -262,11 +249,7 @@ export function CreateSongForm() {
             <FormItem>
               <FormLabel>{tSong("youTubeLink.label")}</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={tSong("youTubeLink.placeholder")}
-                  data-testid={DATA_CY_ELEMENTS.createSongForm.youTubeLink}
-                  {...field}
-                />
+                <Input placeholder={tSong("youTubeLink.placeholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -279,11 +262,7 @@ export function CreateSongForm() {
             <FormItem>
               <FormLabel>{tSong("originalSongLink.label")}</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={tSong("originalSongLink.placeholder")}
-                  data-testid={DATA_CY_ELEMENTS.createSongForm.originalSongLink}
-                  {...field}
-                />
+                <Input placeholder={tSong("originalSongLink.placeholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -296,11 +275,7 @@ export function CreateSongForm() {
             <FormItem>
               <FormLabel>{tSong("audioFileLink.label")}</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={tSong("audioFileLink.placeholder")}
-                  data-testid={DATA_CY_ELEMENTS.createSongForm.audioFileLink}
-                  {...field}
-                />
+                <Input placeholder={tSong("audioFileLink.placeholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

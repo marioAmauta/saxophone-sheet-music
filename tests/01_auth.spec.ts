@@ -1,14 +1,14 @@
-import prisma from "@/db";
 import { test, expect } from "@playwright/test";
 
 import { AppRoutes } from "@/lib/app-routes";
 
 import en from "../messages/en.json";
+import { deleteUser } from "./data-access/user";
 
 test.describe("Auth", () => {
   test.describe("Sign Up", () => {
     test("user can sign up and be automatically logged in correctly", async ({ page }) => {
-      await deleteUserFromDb();
+      await deleteUser({ email: newUser.email });
       await page.goto(AppRoutes.homePage);
       const loginButton = page.getByRole("link", { name: en.LoginButton.label });
       await loginButton.click();
@@ -83,18 +83,6 @@ test.describe("Auth", () => {
     });
   });
 });
-
-async function deleteUserFromDb() {
-  try {
-    await prisma.user.deleteMany();
-
-    console.log("Users deleted successfully");
-  } catch (error) {
-    console.error("Error deleting user:", error);
-  } finally {
-    await prisma.$disconnect();
-  }
-}
 
 const newUser = {
   name: "Mario",

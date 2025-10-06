@@ -13,6 +13,10 @@ export default defineConfig({
   },
   projects: [
     {
+      name: "setup",
+      testMatch: /.*\.setup\.ts/
+    },
+    {
       name: "tests",
       use: { ...devices["iPhone X"] }
     }

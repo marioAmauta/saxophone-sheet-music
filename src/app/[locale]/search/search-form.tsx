@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useTransition } from "react";
+import { startTransition } from "react";
 import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 import { useDebouncedCallback } from "use-debounce";
@@ -10,7 +10,6 @@ import { useDebouncedCallback } from "use-debounce";
 import { useRouter } from "@/i18n/navigation";
 
 import { AppRoutes } from "@/lib/app-routes";
-import { DATA_CY_ELEMENTS } from "@/lib/constants";
 import { searchSchema } from "@/lib/zod-schemas";
 
 import { useRecentSearches } from "@/hooks/use-recent-searches";
@@ -28,8 +27,6 @@ export function SearchForm() {
 
   const searchValue = form.watch("search");
 
-  const [, startTransition] = useTransition();
-
   const { updateRecentSearches } = useRecentSearches();
 
   const debounced = useDebouncedCallback((value) => {
@@ -41,6 +38,7 @@ export function SearchForm() {
 
         if (!isValidValue.success) {
           toast.error(t("errorMessage"));
+
           return;
         }
 
@@ -69,23 +67,18 @@ export function SearchForm() {
             <FormItem className="flex-1">
               <FormControl>
                 <div className="relative flex items-center">
-                  <Input
-                    placeholder={t("placeholder")}
-                    data-cy={DATA_CY_ELEMENTS.navbar.searchInput}
-                    className="pe-8"
-                    autoFocus
-                    {...field}
-                  />
+                  <Input placeholder={t("placeholder")} className="pe-8" autoFocus {...field} />
                   {searchValue ? (
-                    <X
-                      className="absolute top-1/2 right-2 size-5 -translate-y-1/2 cursor-pointer"
+                    <button
                       onClick={() => {
                         router.push({ pathname: AppRoutes.searchPage });
 
                         form.setValue("search", "");
                         form.setFocus("search");
                       }}
-                    />
+                    >
+                      <X className="absolute top-1/2 right-2 size-5 -translate-y-1/2 cursor-pointer p-0" />
+                    </button>
                   ) : null}
                 </div>
               </FormControl>

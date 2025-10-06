@@ -72,7 +72,7 @@ export async function SongDetail({ params, songSegment }: Readonly<SongDetailPro
   ];
 
   const albumImagesData = await getAlbumImages({ songName: song.title, artistName: song.artist.artistName });
-  const bigImage = albumImagesData[0];
+  const bigImage = albumImagesData?.[0];
 
   return (
     <LikeProvider like={isFavorite}>
